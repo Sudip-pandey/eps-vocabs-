@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPS-TOPIK Vocabulary Quiz — Set 10 (Q451–Q500)</title>
+<style>
+  :root {
+    --primary: #1a73e8;
+    --primary-dark: #1557b0;
+    --green: #188038;
+    --green-bg: #e6f4ea;
+    --red: #d93025;
+    --red-bg: #fce8e6;
+    --bg: #f0f4f9;
+    --card: #ffffff;
+    --text: #1f1f1f;
+    --muted: #5f6368;
+    --border: #dadce0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Noto Sans", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; background: #fff; color: var(--primary); font-weight: 700; font-size: .95rem; padding: 10px 20px; border-radius: 999px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,.18); margin-bottom: 12px; transition: transform .15s, box-shadow .15s; }
+  .back-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.22); }
+  header { background: var(--primary); color: #fff; padding: 20px 16px 16px; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+  .header-inner { max-width: 760px; margin: 0 auto; }
+  header h1 { font-size: 1.35rem; line-height: 1.3; }
+  header p { opacity: .9; font-size: .9rem; margin-top: 2px; }
+  .progress-wrap { margin-top: 12px; background: rgba(255,255,255,.25); border-radius: 999px; height: 8px; overflow: hidden; }
+  .progress-bar { height: 100%; background: #fff; width: 0%; transition: width .3s; }
+  .progress-text { font-size: .82rem; margin-top: 6px; opacity: .95; }
+  .autosave-note { font-size: .78rem; margin-top: 4px; opacity: .85; }
+  main { max-width: 760px; margin: 0 auto; padding: 20px 16px 80px; }
+  .q-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .q-card.answered { border-left: 4px solid var(--primary); }
+  .q-num { font-size: .8rem; font-weight: 700; color: var(--primary); letter-spacing: .02em; }
+  .q-text { font-size: 1.08rem; white-space: pre-line; margin: 8px 0 14px; line-height: 1.8; }
+  .options label { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: background .15s, border-color .15s; font-size: 1.02rem; }
+  .options label:hover { background: #f8f9fa; border-color: var(--primary); }
+  .options input { margin-top: 5px; accent-color: var(--primary); width: 18px; height: 18px; flex: none; }
+  .options label.selected { background: #e8f0fe; border-color: var(--primary); }
+  .ul { text-decoration: underline; text-underline-offset: 2px; }
+  .pager { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0 20px; flex-wrap: wrap; }
+  .pager .page-info { font-weight: 600; color: var(--muted); }
+  button { font: inherit; cursor: pointer; border: none; border-radius: 8px; padding: 11px 22px; font-weight: 600; }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-primary:disabled { background: #a8c7fa; cursor: not-allowed; }
+  .btn-ghost { background: #fff; color: var(--primary); border: 1px solid var(--border); }
+  .submit-bar { position: sticky; bottom: 0; background: var(--card); border-top: 1px solid var(--border); padding: 14px 16px; display: flex; justify-content: center; box-shadow: 0 -2px 8px rgba(0,0,0,.08); }
+  .submit-bar .inner { max-width: 760px; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .submit-bar .hint { color: var(--muted); font-size: .9rem; }
+  /* Results */
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 20px; text-align: center; margin-bottom: 20px; }
+  .score-card .big { font-size: 2.6rem; font-weight: 800; color: var(--primary); line-height: 1.1; }
+  .score-card .pct { font-size: 1.1rem; color: var(--muted); margin-top: 4px; }
+  .score-card .msg { margin-top: 10px; font-size: 1rem; }
+  .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filters button { padding: 8px 16px; }
+  .filters button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .review-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 14px; }
+  .review-card.correct { border-left: 5px solid var(--green); }
+  .review-card.wrong { border-left: 5px solid var(--red); }
+  .verdict { font-weight: 700; font-size: .95rem; margin-bottom: 6px; }
+  .verdict.ok { color: var(--green); }
+  .verdict.no { color: var(--red); }
+  .review-card .ans-line { margin: 4px 0; }
+  .review-card .ans-line b { font-weight: 700; }
+  .review-card .ans-line .mine-wrong { color: var(--red); }
+  .review-card .ans-line .right { color: var(--green); }
+  .rev-opts { margin: 10px 0 4px; }
+  .rev-opt { display: flex; align-items: flex-start; gap: 8px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px; font-size: .98rem; line-height: 1.6; }
+  .rev-opt-correct { background: var(--green-bg); border-color: var(--green); }
+  .rev-opt-mine-wrong { background: var(--red-bg); border-color: var(--red); }
+  .rev-opt .rev-text { flex: 1; }
+  .rev-opt .badge { flex: none; font-size: .78rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
+  .badge-correct { background: var(--green); color: #fff; }
+  .badge-mine { background: var(--green); color: #fff; }
+  .badge-mine-wrong { background: var(--red); color: #fff; }
+  .rev-no-answer { color: var(--muted); font-size: .9rem; margin: 4px 0 8px; }
+  .explain { background: #f8f9fa; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: .96rem; }
+  .explain b { color: var(--primary-dark); }
+  .hidden { display: none; }
+  footer { text-align: center; color: var(--muted); font-size: .82rem; padding: 20px; }
+  @media (max-width: 520px) {
+    header h1 { font-size: 1.15rem; }
+    .q-text { font-size: 1rem; }
+    .submit-bar .hint { display: none; }
+  }
+  @media (max-width: 600px) {
+    header { padding: 10px 12px; }
+    .back-btn { padding: 6px 14px; font-size: .85rem; margin-bottom: 8px; }
+    header h1 { font-size: 1.05rem; line-height: 1.25; }
+    header p { font-size: .78rem; line-height: 1.35; }
+    .progress-wrap { margin-top: 8px; height: 6px; }
+    .progress-text { font-size: .75rem; margin-top: 4px; }
+    .autosave-note { font-size: .7rem; margin-top: 2px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="back-btn">&larr; Back to All Sets</a>
+    <h1>EPS-TOPIK 문제은행 Quiz</h1>
+    <p>Set 10 of 11 &bull; Questions 451–500 &bull; 50 questions &bull; EPS-TOPIK Vocabulary &mdash; answers are AI-generated (no answer key in the book) &mdash; check with a teacher &bull; Explanations in Nepali</p>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-text" id="progressText">0 / 50 answered</div>
+    <div class="autosave-note">Progress will be auto-saved.</div>
+  </div>
+</header>
+
+<main id="quizView">
+  <div id="questionList"></div>
+  <div class="pager">
+    <button class="btn-ghost" id="prevBtn">&larr; Previous</button>
+    <span class="page-info" id="pageInfo"></span>
+    <button class="btn-ghost" id="nextBtn">Next &rarr;</button>
+  </div>
+</main>
+
+<div class="submit-bar" id="submitBar">
+  <div class="inner">
+    <span class="hint" id="submitHint">Answer all 50, then submit.</span>
+    <div style="display:flex; gap:8px; flex:none;">
+      <button class="btn-ghost" id="clearBtn" style="padding:11px 16px;">Clear all</button>
+      <button class="btn-primary" id="submitBtn">Submit Quiz</button>
+    </div>
+  </div>
+</div>
+
+<main id="resultView" class="hidden">
+  <div class="score-card">
+    <div class="big" id="scoreBig"></div>
+    <div class="pct" id="scorePct"></div>
+    <div class="msg" id="scoreMsg"></div>
+    <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <button class="btn-primary" id="retryBtn">Try Again</button>
+      <button class="btn-ghost" id="reviewTopBtn">Back to top</button>
+    </div>
+  </div>
+  <div class="filters">
+    <button class="btn-ghost active" data-filter="all">All questions</button>
+    <button class="btn-ghost" data-filter="wrong">Wrong only</button>
+    <button class="btn-ghost" data-filter="correct">Correct only</button>
+  </div>
+  <div id="reviewList"></div>
+</main>
+
+<script>
+const QUESTIONS = [{"n": "451", "q": "바다나 민물에서 자생하는 연체동물로, 단단한 껍데기를 가진 해산물입니다. 미역국, 파스타, 찜 요리 등 다양한 방식으로 요리됩니다.", "options": ["조개", "참치", "어류", "낙지"], "answer": 0, "explain": "1. 조개 भनेको सिपी हो, जुन समुद्र वा नदीमा पाइने कडा खोल भएको जीव हो, त्यसैले यो विवरणसँग मिल्छ। 2. 참치 भनेको टुना माछा हो, जुन ठूलो आकारको माछा हो, त्यसैले यो सही उत्तर होइन। 3. 어류 भनेको माछा वर्ग हो, जसले सबै जलचर माछाहरूलाई जनाउँछ, त्यसैले यो सही उत्तर होइन। 4. 낙지 भनेको अक्टोपस हो, जसको कडा खोल हुँदैन, त्यसैले यो सही उत्तर होइन। त्यसैले सही उत्तर १ नम्बरको 조개 (सिपी) हो।"}, {"n": "452", "q": "위험하거나 방해가 되는 물건을 의미합니다. 보통 어떤 작업이나 환경에서 위험을 초래할 수 있는 요소를 말합니다.", "options": ["방사선", "장해물", "화학물", "독성물"], "answer": 1, "explain": "1. 방사선 भनेको रेडिएसन वा विकिरण हो, त्यसैले यो मिल्दैन। 2. 장해물 भनेको जोखिम वा बाधा पुर्‍याउने वस्तु हो, त्यसैले यो सही उत्तर हो। 3. 화학물 भनेको रासायनिक पदार्थ हो, त्यसैले यो मिल्दैन। 4. 독성물 भनेको विषालु पदार्थ हो, त्यसैले यो मिल्दैन। सही उत्तर 장해물 हो जसको अर्थ जोखिम वा बाधा पुर्‍याउने वस्तु भन्ने हुन्छ।"}, {"n": "453", "q": "불에 쉽게 붙을 수 있는 물질을 의미합니다. 휘발유, 알콜, 가솔린, 에테르, 기름 등이 이에 해당하며, 화재나 폭발 사고를 일으킬 수 있습니다.", "options": ["화학물질", "폭발물질", "장해물질", "인화물질"], "answer": 3, "explain": "1. 화학물질 भनेको रासायनिक पदार्थ हो, त्यसैले यो मिल्दैन। 2. 폭발물질 भनेको विस्फोटक पदार्थ हो, त्यसैले यो मिल्दैन। 3. 장해물질 भनेको बाधा पुर्‍याउने पदार्थ हो, त्यसैले यो मिल्दैन। 4. 인화물질 भनेको आगो सजिलै टिप-हाल्ने वा ज्वलनशील पदार्थ हो, त्यसैले यो सही उत्तर हो। सही उत्तर 인화물질 हो जसको अर्थ ज्वलनशील पदार्थ भन्ने हुन्छ।"}, {"n": "454", "q": "높은 곳에서 떨어지는 물건이나 물질을 뜻합니다. 주로 공사장, 건설현장, 창고, 높은 선반 등에서 발생할 수 있습니다.", "options": ["독극물", "낙하물", "장해물", "감전물"], "answer": 1, "explain": "1. 독극물 भनेको विषालु पदार्थ हो, त्यसैले यो मिल्दैन। 2. 낙하물 भनेको माथिबाट खस्ने वस्तु हो, त्यसैले यो सही उत्तर हो। 3. 장해물 भनेको बाधा पुर्‍याउने वस्तु हो, त्यसैले यो मिल्दैन। 4. 감전물 भनेको करेन्ट लाग्ने वस्तु हो, त्यसैले यो मिल्दैन। सही उत्तर 낙하물 हो जसको अर्थ माथिबाट खस्ने वस्तु भन्ने हुन्छ।"}, {"n": "455", "q": "불을 붙이는 행위를 금지한다는 뜻입니다. 주로 인화 물질이 있는 곳이나 화재 위험이 높은 장소에 설치됩니다.", "options": ["탑승 금지", "촬영 금지", "착화 금지", "통행 금지"], "answer": 2, "explain": "1. 탑승 금지 भनेको चढ्न निषेध हो, त्यसैले यो मिल्दैन। 2. 촬영 금지 भनेको फोटो खिच्न निषेध हो, त्यसैले यो मिल्दैन। 3. 착화 금지 भनेको आगो बाल्न निषेध हो, त्यसैले यो सही उत्तर हो। 4. 통행 금지 भनेको आवतजावत निषेध हो, त्यसैले यो मिल्दैन। सही उत्तर 착화 금지 हो जसको अर्थ आगो बाल्न निषेध भन्ने हुन्छ।"}, {"n": "456", "q": "사진이나 동영상 찍으면 안 된다는 뜻입니다. 주로 보안이 필요한 장소, 프라이버시 보호가 필요한 공간, 저작권 보호 구역 등에 설치됩니다.", "options": ["식음료금지", "촬영 금지", "수영금지", "출입금지"], "answer": 1, "explain": "1. 식음료금지 भनेको खानेकुरा खान र पिउन निषेध हो, त्यसैले यो मिल्दैन। 2. 촬영 금지 भनेको फोटो वा भिडियो खिच्न निषेध हो, त्यसैले यो सही उत्तर हो। 3. 수영금지 भनेको पौडी खेल्न निषेध हो, त्यसैले यो मिल्दैन। 4. 출입금지 भनेको प्रवेश निषेध हो, त्यसैले यो मिल्दैन। सही उत्तर 촬영 금지 हो जसको अर्थ फोटो खिच्न निषेध भन्ने हुन्छ।"}, {"n": "457", "q": "애견 금지는 반려견을 데리고 들어가는 것을 금지한다는 뜻입니다. 주로 식당, 공공시설, 숙박업소, 놀이시설 등에서 위생, 알레르기 예방 등을 이유로 설치됩니다.", "options": ["애견 금지", "임산부 금지", "탑승 금지", "섭취금지"], "answer": 0, "explain": "1. 애견 금지 भनेको घरपालुवा कुकुर निषेध हो, त्यसैले यो सही उत्तर हो। 2. 임산부 금지 भनेको गर्भवती महिला निषेध हो, त्यसैले यो मिल्दैन। 3. 탑승 금지 भनेको सवारी साधनमा चढ्न निषेध हो, त्यसैले यो मिल्दैन। 4. 섭취금지 भनेको सेवन गर्न निषेध हो, त्यसैले यो मिल्दैन। सही उत्तर 애견 금지 हो जसको अर्थ कुकुर ल्याउन निषेध भन्ने हुन्छ।"}, {"n": "458", "q": "위험이 생기거나 사고가 나지 않도록 행동이나 절차에서 지켜야 할 사항을 정한 규칙입니다.", "options": ["공공 도덕", "회사 규칙", "건강 관리", "안전 수칙"], "answer": 3, "explain": "1. 공공 도덕 भनेको सार्वजनिक नैतिकता हो, त्यसैले यो मिल्दैन। 2. 회사 규칙 भनेको कम्पनीको नियम हो, त्यसैले यो मिल्दैन। 3. 건강 관리 भनेको स्वास्थ्य व्यवस्थापन हो, त्यसैले यो मिल्दैन। 4. 안전 수칙 भनेको सुरक्षा नियम वा मापदण्ड हो, त्यसैले यो सही उत्तर हो। सही उत्तर 안전 수칙 हो जसको अर्थ सुरक्षा नियम भन्ने हुन्छ।"}, {"n": "459", "q": "근로자가 작업 중에 사고나 부상으로부터 자신을 보호하기 위해 착용하거나 사용하는 설비를 말합니다.", "options": ["안전 장비", "안전 관리", "안전 수칙", "안전 교육"], "answer": 0, "explain": "1. 안전 장비 भनेको सुरक्षा उपकरण हो, त्यसैले यो सही उत्तर हो। 2. 안전 관리 भनेको सुरक्षा व्यवस्थापन हो, त्यसैले यो मिल्दैन। 3. 안전 수칙 भनेको सुरक्षा नियम हो, त्यसैले यो मिल्दैन। 4. 안전 교육 भनेको सुरक्षा शिक्षा हो, त्यसैले यो मिल्दैन। सही उत्तर 안전 장비 हो जसको अर्थ सुरक्षा उपकरण भन्ने हुन्छ।"}, {"n": "460", "q": "근로자가 업무 중 또는 업무로 인해 부상, 질병, 장애, 사망 등을 입는 사고를 말합니다.", "options": ["산업 관리", "산업 안전", "산업 재해", "산업 복지"], "answer": 2, "explain": "1. 산업 관리 भनेको उद्योग व्यवस्थापन हो, त्यसैले यो मिल्दैन। 2. 산업 안전 भनेको औद्योगिक सुरक्षा हो, त्यसैले यो मिल्दैन। 3. 산업 재해 भनेको औद्योगिक दुर्घटना हो, त्यसैले यो सही उत्तर हो। 4. 산업 복지 भनेको औद्योगिक कल्याण हो, त्यसैले यो मिल्दैन। सही उत्तर 산업 재해 हो जसको अर्थ औद्योगिक दुर्घटना भन्ने हुन्छ।"}, {"n": "461", "q": "일하다가 위에서 떨어지거나 날아오는 물체로 맞아 발생하는 재해를 말합니다.", "options": ["누전 사고", "감전 사고", "낙하 사고", "붕괴 사고"], "answer": 2, "explain": "1. 누전 사고 भनेको करेन्ट चुहावटको दुर्घटना हो, त्यसैले यो मिल्दैन। 2. 감전 사고 भनेको करेन्ट लाग्ने दुर्घटना हो, त्यसैले यो मिल्दैन। 3. 낙하 사고 भनेको माथिबाट खसेर हुने दुर्घटना हो, त्यसैले यो सही उत्तर हो। 4. 붕괴 사고 भनेको भत्किने दुर्घटना हो, त्यसैले यो मिल्दैन। सही उत्तर 낙하 사고 हो जसको अर्थ खस्ने दुर्घटना भन्ने हुन्छ।"}, {"n": "462", "q": "필요한 물건을 쉽게 찾을 수 있도록 사용한 후 정해진 위치에 갖다 놓는 것으로서 안전 사고를 예방할 수 있습니다.", "options": ["작업장 관리", "정리정돈", "포장작업", "전기전략"], "answer": 1, "explain": "1. 작업장 관리 भनेको कार्यक्षेत्र व्यवस्थापन हो, त्यसैले यो मिल्दैन। 2. 정리정돈 भनेको सरसफाइ तथा सामान मिलाएर राख्ने काम हो, त्यसैले यो सही उत्तर हो। 3. 포장작업 भनेको प्याकिङ गर्ने काम हो, त्यसैले यो मिल्दैन। 4. 전기전략 भनेको बिजुलीको रणनीति हो, त्यसैले यो मिल्दैन। सही उत्तर 정리정돈 हो जसको अर्थ सरसफाइ तथा सामान ठीक ठाउँमा मिलाएर राख्नु भन्ने हुन्छ। चौथो विकल्प '전기전략' किताबमा छापिएजस्तै राखिएको छ।"}, {"n": "463", "q": "오래된 전자제품의 전선에서 전기가 밖으로 흘러나와서 발생하는 사고를 말합니다.", "options": ["폭발 사고", "낙하 사고", "붕괴 사고", "누전 사고"], "answer": 3, "explain": "1. 폭발 사고 भनेको विस्फोटन दुर्घटना हो, त्यसैले यो मिल्दैन। 2. 낙하 사고 भनेको खस्ने दुर्घटना हो, त्यसैले यो मिल्दैन। 3. 붕괴 사고 भनेको भत्किने दुर्घटना हो, त्यसैले यो मिल्दैन। 4. 누전 사고 भनेको करेन्ट चुहावटको दुर्घटना हो, त्यसैले यो सही उत्तर हो। सही उत्तर 누전 사고 हो जसको अर्थ करेन्ट चुहावट दुर्घटना भन्ने हुन्छ।"}, {"n": "464", "q": "화재나 지진 등 갑작스러운 사고가 일어날 때 대피할 수 있도록 마련한 출입구입니다.", "options": ["사다리", "비상구", "비상벨", "지하도"], "answer": 1, "explain": "1. 사다리 भनेको भर्याङ हो, जुन उचाइमा चढ्न र ओर्लन प्रयोग गरिन्छ, त्यसैले यो सही उत्तर होइन। 2. 비상구 भनेको आकस्मिक बाहिरिने ढोका हो, जहाँबाट दुर्घटना वा संकटको बेला बाहिर भाग्न सकिन्छ, त्यसैले यो विवरणसँग मिल्छ। 3. 비상벨 भनेको आकस्मिक घण्टी हो, जसले खतराको बेला घण्टी बजाउँछ, त्यसैले यो सही उत्तर होइन। 4. 지하도 भनेको पैदलयात्रीका लागि बनाइएको बाटो हो, त्यसैले यो सही उत्तर होइन। त्यसैले सही उत्तर २ नम्बरको 비상구 (आकस्मिक बाहिरिने ढोका) हो।"}, {"n": "465", "q": "사람들이 많이 다녀서 교통사고의 위험이 있거나 공사가 진행되고 있는 곳에 설치하는 표지판입니다.", "options": ["출입금지", "접근 금지", "사용금지", "취사금지"], "answer": 1, "explain": "1. 출입금지 भनेको प्रवेश निषेध हो, त्यसैले यो मिल्दैन। 2. 접근 금지 भनेको नजिक जान निषेध हो, त्यसैले यो सही उत्तर हो। 3. 사용금지 भनेको प्रयोग निषेध हो, त्यसैले यो मिल्दैन। 4. 취사금지 भनेको खाना पकाउन निषेध हो, त्यसैले यो मिल्दैन। सही उत्तर 접근 금지 हो जसको अर्थ नजिक जान निषेध भन्ने हुन्छ।"}, {"n": "466", "q": "화학물질이나 독성물질을 다룰 때 안전을 위해서 사용하는 보호구입니다.", "options": ["방독마스크", "방진마스크", "안전대", "용접면"], "answer": 0, "explain": "1. 방독마스크 भनेको विषालु ग्यासबाट बच्ने मास्क हो, यो रासायनिक पदार्थको लागि प्रयोग हुने भएकोले सही उत्तर हो। 2. 방진마스크 भनेको धुलोबाट बच्ने मास्क हो, त्यसैले यो मिल्दैन। 3. 안전대 भनेको सुरक्षा बेल्ट हो, त्यसैले यो मिल्दैन। 4. 용접면 भनेको वेल्डिंग गर्ने मास्क हो, त्यसैले यो मिल्दैन। सही उत्तर 방독마스크 हो जसको अर्थ 'विषालु ग्यासबाट बच्ने मास्क' हुन्छ। (नोट: पुस्तकको फोटो अनुसार विकल्पहरू मिलाइएको छ।)"}, {"n": "467", "q": "작업장에서 작업을 할 때 안전을 위해서 착용하는 것으로서 추락으로부터 우리 몸을 지켜 주는 보호구입니다.", "options": ["안전화", "안전장갑", "안전대", "안전모"], "answer": 2, "explain": "1. 안전화 भनेको सुरक्षा जुत्ता हो, यो उचाइबाट खस्ने ुबाट बचाउने नभई खुट्टाको सुरक्षाको लागि हो। 2. 안전장갑 भनेको सुरक्षा पन्जा हो, त्यसैले यो मिल्दैन। 3. 안전대 भनेको सुरक्षा बेल्ट हो, यो उचाइबाट खस्नबाट जोगाउने भएकोले सही उत्तर हो। 4. 안전모 भनेको सुरक्षा टोपी हो, त्यसैले यो मिल्दैन। सही उत्तर 안전대 हो जसको अर्थ 'सुरक्षा बेल्ट' हुन्छ।"}, {"n": "468", "q": "소음 심한 곳에서 작업할 때 특히 귀를 보호하기 위해 사용되는 보호구입니다.", "options": ["안전모", "안전복", "보안경", "귀마개"], "answer": 3, "explain": "1. 안전모 भनेको सुरक्षा टोपी हो, त्यसैले यो मिल्दैन। 2. 안전복 भनेको सुरक्षा पोसाक हो, त्यसैले यो मिल्दैन। 3. 보안경 भनेको सुरक्षा चस्मा हो, त्यसैले यो मिल्दैन। 4. 귀마개 भनेको कानमा लगाउने इयरप्लग हो, यो हल्ला वा कोलाहलबाट कान बचाउन प्रयोग हुने भएकोले सही उत्तर हो। सही उत्तर 귀마개 हो जसको अर्थ 'कानमा लगाउने साधन' हुन्छ।"}, {"n": "469", "q": "위험으로부터 우리 몸을 지켜 주는 안전모, 보안경, 안전화 등을 말합니다. 우리는 일하기 전에 반드시 이것들을 착용하고 일이 끝나면 잘 정리해야 합니다.", "options": ["비상구", "보호구", "수공구", "작업대"], "answer": 1, "explain": "1. 비상구 भनेको आपतकालीन ढोका हो, त्यसैले यो मिल्दैन। 2. 보호구 भनेको व्यक्तिगत सुरक्षा उपकरण हो, यसले सुरक्षा टोपी, सुरक्षा चस्मा र सुरक्षा जुत्तालाई जनाउने हुनाले सही उत्तर हो। 3. 수공구 भनेको हाते औजार हो, त्यसैले यो मिल्दैन। 4. 작업대 भनेको काम गर्ने टेबल हो, त्यसैले यो मिल्दैन। सही उत्तर 보호구 हो जसको अर्थ 'सुरक्षा उपकरण' हुन्छ।"}, {"n": "470", "q": "작업 현장에서 낙하물, 파편 등으로부터 머리를 보호하기 위해서 착용해야 하는 안전도구입니다.", "options": ["안전화", "안전장갑", "안전모", "안전복"], "answer": 2, "explain": "1. 안전화 भनेको सुरक्षा जुत्ता हो, त्यसैले यो मिल्दैन। 2. 안전장갑 भनेको सुरक्षा पन्जा हो, त्यसैले यो मिल्दैन। 3. 안전모 भनेको सुरक्षा टोपी हो, यो खस्ने वस्तुबाट टाउको बचाउन लगाइने हुनाले सही उत्तर हो। 4. 안전복 भनेको सुरक्षा पोसाक हो, त्यसैले यो मिल्दैन। सही उत्तर 안전모 हो जसको अर्थ 'सुरक्षा टोपी' हुन्छ।"}, {"n": "471", "q": "물에 빠졌을 때 사람의 몸이 물에 뜨도록 도와주는 안전 장비입니다. 물가에서 작업할 때, 또는 수난 구조 활동 시 착용하며, 익사를 예방하는 데 매우 중요합니다.", "options": ["구명조끼", "절연 장갑", "절연 장화", "무릎보호대"], "answer": 0, "explain": "1. 구명조끼 भनेको ज्याकेट लाइफ ज्याकेट हो, यो पानीमा डुब्दा बचाउने हुनाले सही उत्तर हो। 2. 절연 장갑 भनेको इन्सुलेटेड पन्जा हो, त्यसैले यो मिल्दैन। 3. 절연 장화 भनेको इन्सुलेटेड जुत्ता हो, त्यसैले यो मिल्दैन। 4. 무릎보호대 भनेको घुँडा रक्षक हो, त्यसैले यो मिल्दैन। सही उत्तर 구명조끼 हो जसको अर्थ 'लाइफ ज्याकेट' हुन्छ।"}, {"n": "472", "q": "갑작스러운 사고나 질병으로 다친 사람에게 의사가 오기 전 또는 병원에 가기 전까지 임시로 시행하는 절차를 말합니다.", "options": ["응급 상황", "응급 처치", "비상 상황", "비상 전화"], "answer": 1, "explain": "1. 응급 상황 भनेको आपतकालीन अवस्था हो, त्यसैले यो मिल्दैन। 2. 응급 처치 भनेको प्राथमिक उपचार हो, डाक्टर आउनु वा अस्पताल जानु अघि गरिने उपचार भएकोले सही उत्तर हो। 3. 비상 상황 भनेको आपतकालीन परिस्थिति हो, त्यसैले यो मिल्दैन। 4. 비상 전화 भनेको आपतकालीन फोन हो, त्यसैले यो मिल्दैन। सही उत्तर 응급 처치 हो जसको अर्थ 'प्राथमिक उपचार' हुन्छ।"}, {"n": "473", "q": "숨을 제대로 쉬지 못해 산소가 부족해지는 상태를 말하며, 기도가 막히거나 유해가스를 마셨을 때 발생할 수 있습니다.", "options": ["화재", "부상", "질식", "무의식"], "answer": 2, "explain": "1. 화재 भनेको आगलागी हो, त्यसैले यो मिल्दैन। 2. 부상 भनेको चोटपटक हो, त्यसैले यो मिल्दैन। 3. 질식 भनेको श्वासप्रश्वास रोकिनु वा दम घोटिनु हो, अक्सिजन नपुग्ने अवस्थालाई जनाउने हुनाले सही उत्तर हो। 4. 무의식 भनेको बेहोस हुनु हो, त्यसैले यो मिल्दैन। सही उत्तर 질식 हो जसको अर्थ 'दम घोटिने अवस्था' हुन्छ।"}, {"n": "474", "q": "다친 사람이나 환자를 옮길 때 사용하는 이동용 침대입니다. 구조 현장이나 병원, 구급차에서 자주 사용되며 두 사람이 양쪽을 들어서 운반합니다.", "options": ["사다리", "비상구", "옷장", "들것"], "answer": 3, "explain": "1. 사다리 भनेको भर्‍याङ हो, त्यसैले यो मिल्दैन। 2. 비상구 भनेको आपतकालीन ढोका हो, त्यसैले यो मिल्दैन। 3. 옷장 भनेको दराज हो, त्यसैले यो मिल्दैन। 4. 들것 भनेको स्ट्रेचर हो, बिरामी बोक्ने ओछ्यान भएकोले सही उत्तर हो। सही उत्तर 들것 हो जसको अर्थ 'स्ट्रेचर' हुन्छ।"}, {"n": "475", "q": "내국인을 구하지 못하여 인력난을 겪고 있는 사업장에 일정한 요건하여 외국인 근로자를 합법적으로 고용할 수 있도록 허가해주는 제도입니다.", "options": ["고용허가제", "외국인 등록제", "최저임금제", "국가세금제"], "answer": 0, "explain": "1. 고용허가제 भनेको रोजगार अनुमति प्रणाली हो, विदेशी मजदुरलाई कानुनी रूपमा काम गर्न अनुमति दिने प्रणाली भएकोले सही उत्तर हो। 2. 외국인 등록제 भनेको विदेशी दर्ता प्रणाली हो, त्यसैले यो मिल्दैन। 3. 최저임금제 भनेको न्यूनतम ज्याला प्रणाली हो, त्यसैले यो मिल्दैन। 4. 국가세금제 भनेको राष्ट्रिय कर प्रणाली हो, त्यसैले यो मिल्दैन। सही उत्तर 고용허가제 हो जसको अर्थ 'रोजगार अनुमति प्रणाली' हुन्छ।"}, {"n": "476", "q": "원자재나 부품을 가공하여 제품을 만드는 산업을 말합니다. 예를 들어, 자동차, 옷, 가전제품, 식품 등을 공장에서 만들어내는 활동이 모두 제조업에 해당합니다.", "options": ["조선업", "제조업", "건설업", "축산업"], "answer": 1, "explain": "1. 조선업 भनेको जहाज निर्माण उद्योग हो, त्यसैले यो मिल्दैन। 2. 제조업 भनेको उत्पादनमूलक उद्योग हो, वस्तुहरू उत्पादन गर्ने उद्योग भएकोले सही उत्तर हो। 3. 건설업 भनेको निर्माण उद्योग हो, त्यसैले यो मिल्दैन। 4. 축산업 भनेको पशुपालन उद्योग हो, त्यसैले यो मिल्दैन। सही उत्तर 제조업 हो जसको अर्थ 'उत्पादनमूलक उद्योग' हुन्छ।"}, {"n": "477", "q": "나무를 심고 기르며 수확하는 산업으로, 산림 자원을 이용해 목재, 버섯, 약초 등을 생산합니다. 자연을 보호하면서 지속 가능한 자원 활용을 목표로 합니다.", "options": ["농업", "광업", "어업", "임업"], "answer": 3, "explain": "1. 농업 भनेको कृषि हो, त्यसैले यो मिल्दैन। 2. 광업 भनेको खानी उद्योग हो, त्यसैले यो मिल्दैन। 3. 어업 भनेको माछापालन हो, त्यसैले यो मिल्दैन। 4. 임업 भनेको वन पैदावार उद्योग हो, रुख रोक्ने र हुकाउने उद्योग भएकोले सही उत्तर हो। सही उत्तर 임업 हो जसको अर्थ 'वन उद्योग' हुन्छ।"}, {"n": "478", "q": "땅속에서 석탄, 철, 금, 석유 같은 자원을 채굴하고 가공하는 산업입니다. 주로 광산이나 시추 시설에서 이루어지며, 제조업의 기초 자원을 제공합니다.", "options": ["콘도업", "광업", "어업", "임업"], "answer": 1, "explain": "1. 콘도업 भनेको कडो व्यवसाय हो, त्यसैले यो मिल्दैन। 2. 광업 भनेको खानी उद्योग हो, जमिनमुनिबाट खनिज निकाल्ने उद्योग भएकोले सही उत्तर हो। 3. 어업 भनेको माछापालन हो, त्यसैले यो मिल्दैन। 4. 임업 भनेको वन उद्योग हो, त्यसैले यो मिल्दैन। सही उत्तर 광업 हो जसको अर्थ 'खानी उद्योग' हुन्छ। (नोट: पुस्तकको फोटो अनुसार विकल्पहरू राखिएको छ।)"}, {"n": "479", "q": "영리를 목적으로 물고기, 조개, 김, 미역 따위를 잡거나 기르는 산업입니다.", "options": ["광업", "농업", "어업", "서비스업"], "answer": 2, "explain": "1. 광업 भनेको खानी उद्योग हो, त्यसैले यो मिल्दैन। 2. 농업 भनेको कृषि हो, त्यसैले यो मिल्दैन। 3. 어업 भनेको माछा मार्ने वा पालन गर्ने उद्योग हो, माछा तथा सामुद्रिक जीव समात्ने वा हुकाउने कामलाई जनाउने हुनाले सही उत्तर हो। 4. 서비스업 भनेको सेवा उद्योग हो, त्यसैले यो मिल्दैन। सही उत्तर 어업 हो जसको अर्थ 'माछापालन वा माछा मार्ने उद्योग' हुन्छ।"}, {"n": "480", "q": "벼, 밀, 채소, 과일 등 식물을 재배하여 식량이나 자원을 생산하는 산업입니다. 주로 밭이나 논에서 경작하는 활동을 말합니다.", "options": ["광업", "농업", "어업", "서비스업"], "answer": 1, "explain": "1. 광업 भनेको खानी उद्योग हो, त्यसैले यो मिल्दैन। 2. 농업 भनेको कृषि उद्योग हो, बालीनाला खेती गर्ने उद्योग भएकोले सही उत्तर हो। 3. 어업 भनेको माछापालन हो, त्यसैले यो मिल्दैन। 4. 서비스업 भनेको सेवा उद्योग हो, त्यसैले यो मिल्दैन। सही उत्तर 농업 हो जसको अर्थ 'कृषि' हुन्छ।"}, {"n": "481", "q": "소, 돼지, 닭, 양 등 가축을 기르고 키워서 고기, 우유, 달걀 등을 생산하는 산업입니다. 농업 중에서도 동물을 사육하여 식품을 얻는 분야를 말합니다.", "options": ["제조업", "건설업", "축산업", "서비스업"], "answer": 2, "explain": "1. 제조업 भनेको सामान उत्पादन गर्ने उद्योग हो, त्यसैले यो मिल्दैन। 2. 건설업 भनेको निर्माण गर्ने क्षेत्र हो, त्यसैले यो मिल्दैन। 3. 축산업 भनेको पशुपालन गर्ने र पशुजन्य उत्पादन लिने क्षेत्र हो, त्यसैले यो सही उत्तर हो। 4. 서비스업 भनेको सेवामूलक क्षेत्र हो, त्यसैले यो मिल्दैन। सही उत्तर 3 नम्बरको 축산업 हो जसको अर्थ पशुपालन व्यवसाय हो।"}, {"n": "482", "q": "건물, 도로, 다리, 터널, 댐 등 구조물을 설계하고 짓는 산업입니다. 사람들이 살거나 일하는 공간과 사회 기반 시설을 만드는 데 중요한 역할을 합니다.", "options": ["건설업", "서비스업", "호텔업", "조선업"], "answer": 0, "explain": "1. 건설업 भनेको भवन, सडक, पुल आदि निर्माण गर्ने क्षेत्र हो, त्यसैले यो सही उत्तर हो। 2. 서비스업 भनेको सेवामूलक क्षेत्र हो, त्यसैले यो मिल्दैन। 3. 호텔업 भनेको होटल व्यवसाय हो, त्यसैले यो मिल्दैन। 4. 조선업 भनेको जहाज निर्माण गर्ने क्षेत्र हो, त्यसैले यो मिल्दैन। सही उत्तर 1 नम्बरको 건설업 हो जसको अर्थ निर्माण उद्योग हो।"}, {"n": "483", "q": "근로자와 사업주가 근로 조건을 명확히 정하고 서면으로 체결하는 공식 문서입니다. 노동자의 권리를 보호하고, 근로 조건에 대한 분쟁을 예방하기 위해 사용됩니다.", "options": ["근로계약서", "휴가 신청서", "취업 확인", "입국 신고서"], "answer": 0, "explain": "1. 근로계약서 भनेको कामदार र रोजगारदाताबीचको श्रम सम्झौता पत्र हो, त्यसैले यो सही उत्तर हो। 2. 휴가 신청서 भनेको बिदाको लागि निवेदन पत्र हो, त्यसैले यो मिल्दैन। 3. 취업 확인 भनेको रोजगारी पुष्टि गर्ने कागजात हो, त्यसैले यो मिल्दैन। 4. 입국 신고서 भनेको प्रवेश घोषणा पत्र हो, त्यसैले यो मिल्दैन। सही उत्तर 1 नम्बरको 근로계약서 हो जसको अर्थ श्रम सम्झौता पत्र हो।"}, {"n": "484", "q": "근로자가 일하고 있는 근무지를 바꾸는 것을 말합니다. 최대 3회까지 허용합니다.", "options": ["체류 기간 연장", "사업장 변경", "외국인 등록", "고용허가제"], "answer": 1, "explain": "1. 체류 기간 연장 भनेको बसोबास अवधि थप गर्नु हो, त्यसैले यो मिल्दैन। 2. 사업장 변경 भनेको काम गर्ने ठाउँ वा कम्पनी परिवर्तन गर्नु हो, त्यसैले यो सही उत्तर हो। 3. 외국인 등록 भनेको विदेशी दर्ता हो, त्यसैले यो मिल्दैन। 4. 고용허가제 भनेको रोजगार अनुमति प्रणाली हो, त्यसैले यो मिल्दैन। सही उत्तर 2 नम्बरको 사업장 변경 हो जसको अर्थ कार्यस्थल परिवर्तन हो।"}, {"n": "485", "q": "근로자와 사업주 간에 체결되는 임금, 근무시간, 휴일, 업무 내용 등을 포함합니다. 이것들은 근로계약서에 명시되어 있으며, 근로자의 권리 보호를 위해 중요합니다.", "options": ["근무 교대", "근무 수칙", "근무 변경", "근무 조건"], "answer": 3, "explain": "1. 근무 교대 भनेको ड्युटी वा सिफ्ट फेर्ने काम हो, त्यसैले यो मिल्दैन। 2. 근무 수칙 भनेको कामको नियम हो, त्यसैले यो मिल्दैन। 3. 근무 변경 भनेको काम परिवर्तन गर्ने हो, त्यसैले यो मिल्दैन। 4. 근무 조건 भनेको तलब, काम गर्ने समय आदि काम गर्ने सर्तहरू हुन्, त्यसैले यो सही उत्तर हो। सही उत्तर 4 नम्बरको 근무 조건 हो जसको अर्थ काम गर्ने सर्तहरू हुन्।"}, {"n": "486", "q": "근로자가 회사에 취직하면 최대 3개월동안 연습으로 일하는 기간이 있습니다. 이 기간 중에는 임금의 90%만 지급받게 됩니다.", "options": ["근로기간", "수습기간", "계약기간", "유효기간"], "answer": 1, "explain": "1. 근로기간 भनेको श्रम अवधि हो, जसमा कामदारले काम गर्ने कुल समय बुझाउँछ, त्यसैले यो सही उत्तर होइन। 2. 수습기간 भनेको परीक्षण काल हो, जहाँ नयाँ कामदारले अभ्यासको रूपमा काम गर्छ र ९० प्रतिशत तलब पाउँछ, त्यसैले यो विवरणसँग मिल्छ। 3. 계약기간 भनेको सम्झौता अवधि हो, जुन सम्झौतामा तोकिएको काम गर्ने समय हो, त्यसैले यो सही उत्तर होइन। 4. 유효기간 भनेको म्याद रहने समय हो, त्यसैले यो सही उत्तर होइन। त्यसैले सही उत्तर २ नम्बरको 수습기간 (परीक्षण काल) हो।"}, {"n": "487", "q": "재직기간을 끝내고 본국에 돌아간 사람이 다시 취직하게 된 것을 말합니다.", "options": ["재발급", "재취업", "재활용", "재정착"], "answer": 1, "explain": "1. 재발급 भनेको पुनः जारी गर्नु हो, त्यसैले यो मिल्दैन। 2. 재취업 भनेको कार्यकाल सकिएर स्वदेश गएको व्यक्तिले पुनः रोजगारी पाउनु हो, त्यसैले यो सही उत्तर हो। 3. 재활용 भनेको पुनः प्रयोग गर्नु हो, त्यसैले यो मिल्दैन। 4. 재정착 भनेको पुनः बसोबास गर्नु हो, त्यसैले यो मिल्दैन। सही उत्तर 2 नम्बरको 재취업 हो जसको अर्थ पुनः रोजगारी हो।"}, {"n": "488", "q": "근로자가 일한 시간이나 일에 대해 지급되는 고정된 급여로, 수당이나 보너스를 제외한 임금을 말합니다.", "options": ["보험금", "지급액", "기본급", "공제액"], "answer": 2, "explain": "1. 보험금 भनेको बिमा रकम हो, जुन दुर्घटना वा क्षति हुँदा पाइने रकम हो, त्यसैले यो सही उत्तर होइन। 2. 지급액 भनेको कुल भुक्तानी रकम हो, त्यसैले यो सही उत्तर होइन। 3. 기본급 भनेको आधारभूत तलब हो, जसमा भत्ता वा बोनस बाहेकको तोकिएको मुख्य तलब पर्दछ, त्यसैले यो विवरणसँग मिल्छ। 4. 공제액 भनेको कट्टी रकम हो, जुन तलबबाट काटिने रकम हो, त्यसैले यो सही उत्तर होइन। त्यसैले सही उत्तर ३ नम्बरको 기본급 (आधारभूत तलब) हो।"}, {"n": "489", "q": "개인이나 법인이 일정한 소득을 얻었을 때 내는 국세입니다. 근로자의 경우 월급에서 자동으로 공제되며, 소득이 많을수록 이것도 더 많아집니다.", "options": ["상여금", "주민세", "소득세", "공과금"], "answer": 2, "explain": "1. 상여금 भनेको बोनस हो, त्यसैले यो मिल्दैन। 2. 주민세 भनेको स्थानीय बासिन्दा कर हो, त्यसैले यो मिल्दैन। 3. 소득세 भनेको आम्दानीमा लाग्ने कर हो, जसलाई तलबबाट काटिन्छ र आम्दानी धेरै भए यो पनि बढ्छ, त्यसैले यो सही उत्तर हो। 4. 공과금 भनेको उपयोगिता शुल्क हो, त्यसैले यो मिल्दैन। सही उत्तर 3 नम्बरको 소득세 हो जसको अर्थ आम्दानी कर हो।"}, {"n": "490", "q": "고용자가 근로자에게 정해진 봉급 이외에 여러 제목에 추가 일한 것에 대해 따로 주는 보수금입니다.", "options": ["보너스", "수당", "세금", "월급"], "answer": 1, "explain": "1. 보너스 भनेको अतिरिक्त काम वा विशेष अवसरमा दिने थप रकम हो, तर यहाँ सु당 भन्न खोजिएको होइन। (नोट: यहाँ विकल्प 1 लाई बोनस भनिए पनि प्रश्नले अतिरिक्त कामको पारिश्रमिक अर्थात् 수당 बुझाउँछ)। 2. 수당 भनेको नियमित तलब बाहेक अतिरिक्त काम गरेबापत दिने भत्ता वा पारिश्रमिक हो, त्यसैले यो सही उत्तर हो। 3. 세금 भनेको कर हो, त्यसैले यो मिल्दैन। 4. 월급 भनेको मासिक तलब हो, त्यसैले यो मिल्दैन। सही उत्तर 2 नम्बरको 수당 हो जसको अर्थ भत्ता वा अतिरिक्त परिश्रमिक हो।"}, {"n": "491", "q": "지방자치단체에 내는 세금으로, 해당 지역에 거주하거나 사업장을 둔 사람에게 부과됩니다.", "options": ["기본급", "주민세", "소득세", "공과금"], "answer": 1, "explain": "1. 기본급 भनेको आधारभूत तलब हो, त्यसैले यो मिल्दैन। 2. 주민세 भनेको स्थानीय सरकारलाई तिर्ने कर हो जुन उक्त क्षेत्रमा बसोबास गर्ने वा व्यवसाय गर्नेलाई लगाइन्छ, त्यसैले यो सही उत्तर हो। 3. 소득세 भनेको आम्दानी कर हो, त्यसैले यो मिल्दैन। 4. 공과금 भनेको उपयोगिता शुल्क हो, त्यसैले यो मिल्दैन। सही उत्तर 2 नम्बरको 주민세 हो जसको अर्थ स्थानीय बासिन्दा कर हो।"}, {"n": "492", "q": "한국인이나 외국인 모두 가입해야 하는 보험으로 의료비 부담을 덜고 1년에 한 번씩 건강검진도 받을 수 있습니다.", "options": ["산재보험", "고용보험", "건강보험", "보증보험"], "answer": 2, "explain": "1. 산재보험 भनेको औद्योगिक दुर्घटना बिमा हो, त्यसैले यो मिल्दैन। 2. 고용보험 भनेको रोजगारी बिमा हो, त्यसैले यो मिल्दैन। 3. 건강보험 भनेको स्वास्थ्य बिमा हो जसले उपचार खर्च कम गर्न र वर्षको एक पटक स्वास्थ्य परीक्षण गर्न मद्दत गर्छ, त्यसैले यो सही उत्तर हो। 4. 보증보험 भनेको ग्यारेन्टी बिमा हो, त्यसैले यो मिल्दैन। सही उत्तर 3 नम्बरको 건강보험 हो जसको अर्थ स्वास्थ्य बिमा हो।"}, {"n": "493", "q": "월급의 총액에서 공제될 금액을 모두 뺀 다음 근로자가 실제로 받는 급여입니다.", "options": ["국민연금", "공제총액", "연말정산", "실수령액"], "answer": 3, "explain": "1. 국민연금 भनेको राष्ट्रिय पेन्सन हो, त्यसैले यो मिल्दैन। 2. 공제총액 भनेको कट्टा गरिएको कुल रकम हो, त्यसैले यो मिल्दैन। 3. 연말정산 भनेको वर्षको अन्त्यमा गर्ने कर फछ््यौट हो, त्यसैले यो मिल्दैन। 4. 실수령액 भनेको कुल तलबबाट सबै कर र शुल्कहरू काटेपछि कामदारले वास्तवमा हातमा पाउने रकम हो, त्यसैले यो सही उत्तर हो। सही उत्तर 4 नम्बरको 실수령액 हो जसको अर्थ वास्तविक प्राप्त गर्ने रकम हो।"}, {"n": "494", "q": "근로자에게 지급해야할 총액에서 보험과 세금 같은 일정한 금액이나 수량을 빼는 것입니다.", "options": ["월급", "가불", "공제", "보너스"], "answer": 2, "explain": "1. 월급 भनेको मासिक तलब हो, त्यसैले यो मिल्दैन। 2. 가불 भनेको पेस्की लिनु हो, त्यसैले यो मिल्दैन। 3. 공제 भनेको कुल रकमबाट बिमा, कर जस्ता निश्चित रकम वा परिमाण काट्ने वा घटाउने काम हो, त्यसैले यो सही उत्तर हो। 4. 보너스 भनेको बोनस हो, त्यसैले यो मिल्दैन। सही उत्तर 3 नम्बरको 공제 हो जसको अर्थ कट्टा वा कटौती हो।"}, {"n": "495", "q": "사고가 일어날 경우를 대비하여, 미리 일정한 돈을 적립해 두었다가 사고를 당한 사람에게 일정 금액을 주어 손해를 보상하는 제도입니다.", "options": ["월급", "보험", "세금", "수당"], "answer": 1, "explain": "१. 월급 भनेको मासिक तलब हो, तर यसले दुर्घटना हुँदा क्षतिपूर्ति दिने प्रणालीलाई जनाउँदैन।\n२. 보험 भनेको बीमा हो, जसले दुर्घटनाको अवस्थामा क्षतिपूर्ति पाउन अघि नै पैसा जम्मा गरेर राखिने प्रणालीलाई जनाउँछ, त्यसैले यो विवरणसँग मिल्छ।\n३. 세금 भनेको कर हो, जुन सरकारलाई बुझाइन्छ र यसले दुर्घटनाको क्षतिपूर्तिलाई जनाउँदैन।\n४. 수당 भनेको अतिरिक्त भत्ता हो, जुन काम गरेबापत थप पाइने रकम हो।\nत्यसैले सही उत्तर २ नम्बरको 보험 हो।"}, {"n": "496", "q": "월급을 받는 여러 방식 중에서 일한 대가를 하루 단위로 계산하여 받는 것입니다.", "options": ["월급", "시급", "일당", "월봉"], "answer": 2, "explain": "पहिलो विकल्प 월급 भनेको मासिक तलब हो, त्यसैले यो मिल्दैन। दोस्रो विकल्प 시급 भनेको प्रतिघण्टा ज्याला हो, त्यसैले यो मिल्दैन। तेस्रो विकल्प 일당 भनेको दैनिक ज्याला वा दिनको हिसाबले पाउने पारिश्रमिक हो, त्यसैले यो सही उत्तर हो। चौथो विकल्प 월봉 भनेको महिनाको तलब वा पारिश्रमिक हो, त्यसैले यो मिल्दैन। सहि उत्तर 일당 हो जसको अर्थ दैनिक ज्याला हो।"}, {"n": "497", "q": "어떤 일을 맡아 처리해 준 데 대한 대가로서 특히 공공 기관에 주는 요금입니다.", "options": ["학비", "수수료", "식비", "번호표"], "answer": 1, "explain": "पहिलो विकल्प 학비 भनेको पढाई खर्च वा शुल्क हो, त्यसैले यो मिल्दैन। दोस्रो विकल्प 수수료 भनेको कुनै काम गरिदिए बापत तिर्ने सेवा शुल्क वा दस्तुर हो, त्यसैले यो सही उत्तर हो। तेस्रो विकल्प 식비 भनेको खाना खर्च हो, त्यसैले यो मिल्दैन। चौथो विकल्प 번호표 भनेको पालो पर्खने नम्बर पर्ची हो, त्यसैले यो मिल्दैन। सहि उत्तर 수수료 हो जसको अर्थ सेवा शुल्क वा दस्तुर हो।"}, {"n": "498", "q": "집을 빌려주고 빌릴 때 기관과 비용 등 계약 내용을 기재한 서류로 체류 기간을 연장할 때 체류지 입증 서류로 사용될 수 있습니다.", "options": ["구직등록필증", "임대차 계약서", "근로계약서", "입국 신고서"], "answer": 1, "explain": "पहिलो विकल्प 구직등록필증 भनेको रोजगारी खोजी दर्ता प्रमाणपत्र हो, त्यसैले यो मिल्दैन। दोस्रो विकल्प 임대차 계약서 भनेको घर भाडा सम्झौता पत्र हो जसमा कोठा वा घर भाडामा लिँदाका सर्तहरू लेखिएका हुन्छन् र यो बसोबास प्रमाणित गर्न प्रयोग हुन्छ, त्यसैले यो सही उत्तर हो। तेस्रो विकल्प 근로계약서 भनेको श्रम सम्झौता पत्र हो, त्यसैले यो मिल्दैन। चौथो विकल्प 입국 신고서 भनेको प्रवेश घोषणा पत्र हो, त्यसैले यो मिल्दैन। सहि उत्तर 임대차 계약서 हो जसको अर्थ घर भाडा सम्झौता पत्र हो।"}, {"n": "499", "q": "사업을 시작할 때 세무서에 등록하고 발급받는 공식 문서로, 정부에 내가 어떤 사업을 하고 있다는 것을 알리는 증명서입니다.", "options": ["근로계약서", "외국인등록증", "연말정산", "사업자등록증"], "answer": 3, "explain": "पहिलो विकल्प 근로계약서 भनेको श्रम सम्झौता पत्र हो, त्यसैले यो मिल्दैन। दोस्रो विकल्प 외국인등록증 भनेको विदेशी परिचय पत्र हो, त्यसैले यो मिल्दैन। तेस्रो विकल्प 연말정산 भनेको वर्षको अन्त्यमा गरिने कर हिसाब मिलान हो, त्यसैले यो मिल्दैन। चौथो विकल्प 사업자등록증 भनेको व्यवसाय दर्ता प्रमाणपत्र हो जसले कर कार्यालयमा व्यवसाय दर्ता गरेको कुरा प्रमाणित गर्छ, त्यसैले यो सही उत्तर हो। सहि उत्तर 사업자등록증 हो जसको अर्थ व्यवसाय दर्ता प्रमाणपत्र हो। किताबमा दोस्रो विकल्प '외국이등록증' छापिएको छ; यो छपाइ त्रुटि हो, सही शब्द '외국인등록증' हो।"}, {"n": "500", "q": "시청, 구청, 주민센터, 출입국관리사무소 같은 국가나 지방의 행정을 맡아 보는 여러 기관을 말합니다.", "options": ["관공서", "소방서", "경찰서", "여행사"], "answer": 0, "explain": "पहिलो विकल्प 관공서 भनेको सरकारी कार्यालय हो जसमा महानगरपालिका, वडा कार्यालय र अध्यागमन कार्यालय जस्ता प्रशासनिक निकायहरू पर्छन्, त्यसैले यो सही उत्तर हो। दोस्रो विकल्प 소방서 भनेको दमकल कार्यालय वा अग्नि नियन्त्रण कार्यालय हो, त्यसैले यो मिल्दैन। तेस्रो विकल्प 경찰서 भनेको प्रहरी कार्यालय हो, त्यसैले यो मिल्दैन। चौथो विकल्प 여행사 भनेको ट्राभल एजेन्सी वा यात्रा कम्पनी हो, त्यसैले यो मिल्दैन। सहि उत्तर 관공서 हो जसको अर्थ सरकारी कार्यालय हो।"}];
+
+const PER_PAGE = 20;
+const TOTAL = QUESTIONS.length;
+const SET_ID = 'eps-vocab-set-10';
+const answers = {}; // question index -> chosen option index
+let page = 0;
+let submitted = false;
+let reviewFilter = 'all';
+
+// --- progress auto-save (localStorage) ---
+// Saved per set (key includes SET_ID), so each set file keeps its own
+// progress. Wrapped in try/catch: if the browser blocks storage, the quiz
+// still works, it just won't remember progress.
+const STORE_KEY = 'eps-quiz-' + SET_ID;
+function storeAvailable() {
+  try { localStorage.setItem('__eps_test__', '1'); localStorage.removeItem('__eps_test__'); return true; }
+  catch (e) { return false; }
+}
+const storeOK = storeAvailable();
+function saveProgress() {
+  if (!storeOK) return;
+  try { localStorage.setItem(STORE_KEY, JSON.stringify({ answers: answers, page: page })); } catch (e) {}
+}
+function loadProgress() {
+  if (!storeOK) return;
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data && data.answers) {
+      Object.keys(data.answers).forEach(k => { answers[k] = data.answers[k]; });
+      if (typeof data.page === 'number' && data.page >= 0 && data.page < Math.ceil(TOTAL / PER_PAGE)) page = data.page;
+    }
+  } catch (e) {}
+}
+function clearProgress() {
+  if (storeOK) { try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
+}
+loadProgress();
+
+const $ = (id) => document.getElementById(id);
+const circled = ['①','②','③','④'];
+
+function updateProgress() {
+  const done = Object.keys(answers).length;
+  $('progressBar').style.width = (done / TOTAL * 100) + '%';
+  $('progressText').textContent = done + ' / ' + TOTAL + ' answered';
+  $('submitHint').textContent = done === TOTAL ? 'All answered — ready to submit!' : (TOTAL - done) + ' unanswered (counted wrong on submit).';
+}
+
+// Renders "① <option text>" into `el`, wrapping the FIRST occurrence of
+// the underlined substring (if any) in <span class="ul"> so it gets a real
+// CSS underline — never a combining mark (U+0332 renders as tofu boxes on
+// some devices). Uses text nodes only, never innerHTML, so option text is
+// never parsed as markup. Questions without an "underlined" field (e.g.
+// the 600-question quiz) render plain text exactly as before.
+function renderOptionText(el, prefix, opt, under) {
+  el.appendChild(document.createTextNode(prefix + ' '));
+  const u = under || '';
+  const idx = u ? opt.indexOf(u) : -1;
+  if (idx < 0) {
+    el.appendChild(document.createTextNode(opt));
+    return;
+  }
+  if (idx > 0) el.appendChild(document.createTextNode(opt.slice(0, idx)));
+  const span = document.createElement('span');
+  span.className = 'ul';
+  span.appendChild(document.createTextNode(u));
+  el.appendChild(span);
+  if (idx + u.length < opt.length) {
+    el.appendChild(document.createTextNode(opt.slice(idx + u.length)));
+  }
+}
+
+function renderPage() {
+  const list = $('questionList');
+  list.innerHTML = '';
+  const start = page * PER_PAGE;
+  const end = Math.min(start + PER_PAGE, TOTAL);
+  for (let i = start; i < end; i++) {
+    const q = QUESTIONS[i];
+    const card = document.createElement('div');
+    card.className = 'q-card' + (answers[i] !== undefined ? ' answered' : '');
+    card.innerHTML =
+      '<div class="q-num">Question ' + q.n + '</div>' +
+      '<div class="q-text"></div>' +
+      '<div class="options"></div>';
+    card.querySelector('.q-text').textContent = q.q;
+    const opts = card.querySelector('.options');
+    q.options.forEach((opt, oi) => {
+      const label = document.createElement('label');
+      if (answers[i] === oi) label.classList.add('selected');
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'q' + i;
+      input.checked = answers[i] === oi;
+      input.addEventListener('change', () => {
+        answers[i] = oi;
+        card.classList.add('answered');
+        card.querySelectorAll('label').forEach(l => l.classList.remove('selected'));
+        label.classList.add('selected');
+        updateProgress();
+        saveProgress();
+      });
+      const span = document.createElement('span');
+      renderOptionText(span, circled[oi], opt, (q.underlined && q.underlined[oi]) || '');
+      label.appendChild(input);
+      label.appendChild(span);
+      opts.appendChild(label);
+    });
+    list.appendChild(card);
+  }
+  $('pageInfo').textContent = 'Page ' + (page + 1) + ' of ' + Math.ceil(TOTAL / PER_PAGE) + '  (Q' + QUESTIONS[start].n + '–Q' + QUESTIONS[end - 1].n + ')';
+  $('prevBtn').disabled = page === 0;
+  $('nextBtn').disabled = end >= TOTAL;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitQuiz() {
+  const unanswered = TOTAL - Object.keys(answers).length;
+  if (unanswered > 0 && !confirm(unanswered + ' question(s) still unanswered — they will count as wrong. Submit anyway?')) return;
+  submitted = true;
+  let score = 0;
+  QUESTIONS.forEach((q, i) => { if (answers[i] === q.answer) score++; });
+  const pct = Math.round(score / TOTAL * 100);
+  $('scoreBig').textContent = score + ' / ' + TOTAL;
+  $('scorePct').textContent = pct + '% correct';
+  $('scoreMsg').textContent =
+    pct >= 90 ? 'Excellent! EPS-TOPIK ready. 🎉' :
+    pct >= 70 ? 'Very good! Keep polishing the weak ones.' :
+    pct >= 50 ? 'Good start — review the wrong ones below and try again.' :
+    'Keep practicing — the explanations below will help.';
+  $('quizView').classList.add('hidden');
+  $('submitBar').classList.add('hidden');
+  $('resultView').classList.remove('hidden');
+  renderReview();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderReview() {
+  const list = $('reviewList');
+  list.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    const mine = answers[i];
+    const ok = mine === q.answer;
+    if (reviewFilter === 'wrong' && ok) return;
+    if (reviewFilter === 'correct' && !ok) return;
+    const card = document.createElement('div');
+    card.className = 'review-card ' + (ok ? 'correct' : 'wrong');
+    card.innerHTML =
+      '<div class="verdict ' + (ok ? 'ok' : 'no') + '">' + (ok ? '✓ Correct' : '✗ Wrong') + ' — Question ' + q.n + '</div>' +
+      '<div class="q-text"></div>' +
+      '<div class="rev-opts"></div>' +
+      '<div class="explain"><b>किन?</b> <span></span></div>';
+    card.querySelector('.q-text').textContent = q.q;
+    const optsBox = card.querySelector('.rev-opts');
+    if (mine === undefined) {
+      const note = document.createElement('div');
+      note.className = 'rev-no-answer';
+      note.textContent = 'उत्तर दिएनौ';
+      optsBox.appendChild(note);
+    }
+    q.options.forEach((opt, oi) => {
+      const row = document.createElement('div');
+      row.className = 'rev-opt';
+      if (oi === q.answer) row.classList.add('rev-opt-correct');
+      if (mine !== undefined && oi === mine && mine !== q.answer) row.classList.add('rev-opt-mine-wrong');
+      const text = document.createElement('span');
+      text.className = 'rev-text';
+      renderOptionText(text, circled[oi], opt, (q.underlined && q.underlined[oi]) || '');
+      row.appendChild(text);
+      if (oi === q.answer) {
+        const b = document.createElement('span');
+        b.className = 'badge badge-correct';
+        b.textContent = '✓ सही उत्तर';
+        row.appendChild(b);
+      }
+      if (mine !== undefined && oi === mine) {
+        const b = document.createElement('span');
+        b.className = 'badge ' + (mine === q.answer ? 'badge-mine' : 'badge-mine-wrong');
+        b.textContent = '→ तिम्रो उत्तर';
+        row.appendChild(b);
+      }
+      optsBox.appendChild(row);
+    });
+    card.querySelector('.explain span').textContent = q.explain;
+    list.appendChild(card);
+  });
+  if (!list.children.length) {
+    list.innerHTML = '<p style="color:var(--muted); text-align:center; padding:20px;">No questions in this filter.</p>';
+  }
+}
+
+$('prevBtn').addEventListener('click', () => { if (page > 0) { page--; renderPage(); saveProgress(); } });
+$('nextBtn').addEventListener('click', () => { if ((page + 1) * PER_PAGE < TOTAL) { page++; renderPage(); saveProgress(); } });
+$('submitBtn').addEventListener('click', submitQuiz);
+$('clearBtn').addEventListener('click', () => {
+  if (!confirm('Sabai answers clear garne? Saved progress pani delete hunchha.')) return;
+  Object.keys(answers).forEach(k => delete answers[k]);
+  clearProgress();
+  page = 0;
+  renderPage(); updateProgress();
+  window.scrollTo({ top: 0 });
+});
+$('retryBtn').addEventListener('click', () => {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  clearProgress();
+  submitted = false; page = 0; reviewFilter = 'all';
+  document.querySelectorAll('.filters button').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+  $('resultView').classList.add('hidden');
+  $('quizView').classList.remove('hidden');
+  $('submitBar').classList.remove('hidden');
+  renderPage(); updateProgress();
+  window.scrollTo({ top: 0 });
+});
+$('reviewTopBtn').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+document.querySelectorAll('.filters button').forEach(b => {
+  b.addEventListener('click', () => {
+    reviewFilter = b.dataset.filter;
+    document.querySelectorAll('.filters button').forEach(x => x.classList.toggle('active', x === b));
+    renderReview();
+  });
+});
+
+renderPage();
+updateProgress();
+</script>
+</body>
+</html>

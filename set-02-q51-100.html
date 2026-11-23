@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPS-TOPIK Vocabulary Quiz — Set 02 (Q51–Q100)</title>
+<style>
+  :root {
+    --primary: #1a73e8;
+    --primary-dark: #1557b0;
+    --green: #188038;
+    --green-bg: #e6f4ea;
+    --red: #d93025;
+    --red-bg: #fce8e6;
+    --bg: #f0f4f9;
+    --card: #ffffff;
+    --text: #1f1f1f;
+    --muted: #5f6368;
+    --border: #dadce0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Noto Sans", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; background: #fff; color: var(--primary); font-weight: 700; font-size: .95rem; padding: 10px 20px; border-radius: 999px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,.18); margin-bottom: 12px; transition: transform .15s, box-shadow .15s; }
+  .back-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.22); }
+  header { background: var(--primary); color: #fff; padding: 20px 16px 16px; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+  .header-inner { max-width: 760px; margin: 0 auto; }
+  header h1 { font-size: 1.35rem; line-height: 1.3; }
+  header p { opacity: .9; font-size: .9rem; margin-top: 2px; }
+  .progress-wrap { margin-top: 12px; background: rgba(255,255,255,.25); border-radius: 999px; height: 8px; overflow: hidden; }
+  .progress-bar { height: 100%; background: #fff; width: 0%; transition: width .3s; }
+  .progress-text { font-size: .82rem; margin-top: 6px; opacity: .95; }
+  .autosave-note { font-size: .78rem; margin-top: 4px; opacity: .85; }
+  main { max-width: 760px; margin: 0 auto; padding: 20px 16px 80px; }
+  .q-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .q-card.answered { border-left: 4px solid var(--primary); }
+  .q-num { font-size: .8rem; font-weight: 700; color: var(--primary); letter-spacing: .02em; }
+  .q-text { font-size: 1.08rem; white-space: pre-line; margin: 8px 0 14px; line-height: 1.8; }
+  .options label { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: background .15s, border-color .15s; font-size: 1.02rem; }
+  .options label:hover { background: #f8f9fa; border-color: var(--primary); }
+  .options input { margin-top: 5px; accent-color: var(--primary); width: 18px; height: 18px; flex: none; }
+  .options label.selected { background: #e8f0fe; border-color: var(--primary); }
+  .ul { text-decoration: underline; text-underline-offset: 2px; }
+  .pager { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0 20px; flex-wrap: wrap; }
+  .pager .page-info { font-weight: 600; color: var(--muted); }
+  button { font: inherit; cursor: pointer; border: none; border-radius: 8px; padding: 11px 22px; font-weight: 600; }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-primary:disabled { background: #a8c7fa; cursor: not-allowed; }
+  .btn-ghost { background: #fff; color: var(--primary); border: 1px solid var(--border); }
+  .submit-bar { position: sticky; bottom: 0; background: var(--card); border-top: 1px solid var(--border); padding: 14px 16px; display: flex; justify-content: center; box-shadow: 0 -2px 8px rgba(0,0,0,.08); }
+  .submit-bar .inner { max-width: 760px; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .submit-bar .hint { color: var(--muted); font-size: .9rem; }
+  /* Results */
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 20px; text-align: center; margin-bottom: 20px; }
+  .score-card .big { font-size: 2.6rem; font-weight: 800; color: var(--primary); line-height: 1.1; }
+  .score-card .pct { font-size: 1.1rem; color: var(--muted); margin-top: 4px; }
+  .score-card .msg { margin-top: 10px; font-size: 1rem; }
+  .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filters button { padding: 8px 16px; }
+  .filters button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .review-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 14px; }
+  .review-card.correct { border-left: 5px solid var(--green); }
+  .review-card.wrong { border-left: 5px solid var(--red); }
+  .verdict { font-weight: 700; font-size: .95rem; margin-bottom: 6px; }
+  .verdict.ok { color: var(--green); }
+  .verdict.no { color: var(--red); }
+  .review-card .ans-line { margin: 4px 0; }
+  .review-card .ans-line b { font-weight: 700; }
+  .review-card .ans-line .mine-wrong { color: var(--red); }
+  .review-card .ans-line .right { color: var(--green); }
+  .rev-opts { margin: 10px 0 4px; }
+  .rev-opt { display: flex; align-items: flex-start; gap: 8px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px; font-size: .98rem; line-height: 1.6; }
+  .rev-opt-correct { background: var(--green-bg); border-color: var(--green); }
+  .rev-opt-mine-wrong { background: var(--red-bg); border-color: var(--red); }
+  .rev-opt .rev-text { flex: 1; }
+  .rev-opt .badge { flex: none; font-size: .78rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
+  .badge-correct { background: var(--green); color: #fff; }
+  .badge-mine { background: var(--green); color: #fff; }
+  .badge-mine-wrong { background: var(--red); color: #fff; }
+  .rev-no-answer { color: var(--muted); font-size: .9rem; margin: 4px 0 8px; }
+  .explain { background: #f8f9fa; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: .96rem; }
+  .explain b { color: var(--primary-dark); }
+  .hidden { display: none; }
+  footer { text-align: center; color: var(--muted); font-size: .82rem; padding: 20px; }
+  @media (max-width: 520px) {
+    header h1 { font-size: 1.15rem; }
+    .q-text { font-size: 1rem; }
+    .submit-bar .hint { display: none; }
+  }
+  @media (max-width: 600px) {
+    header { padding: 10px 12px; }
+    .back-btn { padding: 6px 14px; font-size: .85rem; margin-bottom: 8px; }
+    header h1 { font-size: 1.05rem; line-height: 1.25; }
+    header p { font-size: .78rem; line-height: 1.35; }
+    .progress-wrap { margin-top: 8px; height: 6px; }
+    .progress-text { font-size: .75rem; margin-top: 4px; }
+    .autosave-note { font-size: .7rem; margin-top: 2px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="back-btn">&larr; Back to All Sets</a>
+    <h1>EPS-TOPIK 문제은행 Quiz</h1>
+    <p>Set 2 of 11 &bull; Questions 51–100 &bull; 50 questions &bull; EPS-TOPIK Vocabulary &mdash; answers are AI-generated (no answer key in the book) &mdash; check with a teacher &bull; Explanations in Nepali</p>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-text" id="progressText">0 / 50 answered</div>
+    <div class="autosave-note">Progress will be auto-saved.</div>
+  </div>
+</header>
+
+<main id="quizView">
+  <div id="questionList"></div>
+  <div class="pager">
+    <button class="btn-ghost" id="prevBtn">&larr; Previous</button>
+    <span class="page-info" id="pageInfo"></span>
+    <button class="btn-ghost" id="nextBtn">Next &rarr;</button>
+  </div>
+</main>
+
+<div class="submit-bar" id="submitBar">
+  <div class="inner">
+    <span class="hint" id="submitHint">Answer all 50, then submit.</span>
+    <div style="display:flex; gap:8px; flex:none;">
+      <button class="btn-ghost" id="clearBtn" style="padding:11px 16px;">Clear all</button>
+      <button class="btn-primary" id="submitBtn">Submit Quiz</button>
+    </div>
+  </div>
+</div>
+
+<main id="resultView" class="hidden">
+  <div class="score-card">
+    <div class="big" id="scoreBig"></div>
+    <div class="pct" id="scorePct"></div>
+    <div class="msg" id="scoreMsg"></div>
+    <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <button class="btn-primary" id="retryBtn">Try Again</button>
+      <button class="btn-ghost" id="reviewTopBtn">Back to top</button>
+    </div>
+  </div>
+  <div class="filters">
+    <button class="btn-ghost active" data-filter="all">All questions</button>
+    <button class="btn-ghost" data-filter="wrong">Wrong only</button>
+    <button class="btn-ghost" data-filter="correct">Correct only</button>
+  </div>
+  <div id="reviewList"></div>
+</main>
+
+<script>
+const QUESTIONS = [{"n": "51", "q": "먼지나 쓰레기를 빨아들여 집 안이나 사무실 등을 깨끗하게 청소할 수 있도록 도와주는 기계입니다.", "options": ["계산기", "청소기", "냉장고", "사진기"], "answer": 1, "explain": "१. 계산기 भनेको क्याल्कुलेटर हो, त्यसैले यो मिल्दैन। २. 청소기 भनेको धुलो वा फोहोर तानेर कोठा सफा गर्ने भ्याकुम क्लिनर हो, त्यसैले यो सही उत्तर हो। ३. 냉장고 भनेको फ्रिज हो, त्यसैले यो मिल्दैन। ४. 사진기 भनेको क्यामेरा हो, त्यसैले यो मिल्दैन। सही उत्तर २ हो जसको अर्थ भ्याकुम क्लिनर हो।"}, {"n": "52", "q": "상품을 생산하거나 서비스를 제공하여 이익을 얻는 조직입니다. 경영진과 직원들이 효율적으로 자원을 관리하여 지속 가능한 성장을 추구합니다.", "options": ["공장", "학교", "회사", "은행"], "answer": 2, "explain": "१. 공장 भनेको कारखाना हो, त्यसैले यो पूर्ण मिल्दैन। २. 학교 भनेको विद्यालय हो, त्यसैले यो मिल्दैन। ३. 회사 भनेको सामान उत्पादन गरेर वा सेवा दिएर नाफा कमाउने संस्था (कम्पनी) हो, त्यसैले यो सही उत्तर हो। ४. 은행 भनेको बैंक हो, त्यसैले यो मिल्दैन। सही उत्तर ३ हो जसको अर्थ कम्पनी हो।"}, {"n": "53", "q": "음식을 제공하는 장소로, 고객에게 다양한 메뉴를 제공하여 식사를 제공합니다. 보통 음료와 함께 식사를 즐길 수 있는 공간이 마련되어 있습니다.", "options": ["부엌", "밥집", "식당", "커피숍"], "answer": 2, "explain": "१. 부엌 भनेको घरभित्रको भान्साकोठा हो, त्यसैले यो मिल्दैन। २. 밥집 भनेको सामान्य भात खाने पसल हो। ३. 식당 भनेको ग्राहकलाई विभिन्न प्रकारका परिकार र खाना उपलब्ध गराउने रेस्टुरेन्ट हो, त्यसैले यो सही उत्तर हो। ४. 커피숍 भनेको कफी पसल हो, त्यसैले यो मिल्दैन। सही उत्तर ३ हो जसको अर्थ रेस्टुरेन्ट हो।"}, {"n": "54", "q": "돈을 맡기고 빌릴 수 있는 곳으로, 사람들 또는 회사에 금융 서비스를 제공합니다. 예금, 대출, 송금 등의 서비스를 통해 돈을 관리합니다.", "options": ["식당", "학원", "은행", "환전소"], "answer": 2, "explain": "식당 भनेको रेस्टुरेन्ट हो, यो पैसा जम्मा गर्ने ठाउँ होइन। 학원 भनेको ट्युसन सेन्टर वा कोचिङ इन्स्टिच्युट हो, यो बैंक होइन। 은행 भनेको बैंक हो, जहाँ पैसा जम्मा गर्न र ऋण लिन सकिन्छ र वित्तीय सेवाहरू प्रदान गर्छ र प्रश्नसँग मिल्छ। 환전소 भनेको मुद्रा सटही काउन्टर हो, यो पूर्ण बैंक सेवा दिने ठाउँ होइन। सही उत्तर ३ हो र यसको अर्थ बैंक हो।"}, {"n": "55", "q": "집이나 식당에서 식사를 하거나 음식을 올려놓기 위해 사용하는 탁자를 말합니다.", "options": ["책상", "식탁", "책장", "옷장"], "answer": 1, "explain": "१. 책상 भनेको पढ्ने टेबल हो, त्यसैले यो मिल्दैन। २. 식탁 भनेको घर वा रेस्टुरेन्टमा खाना खान वा खाना राख्न प्रयोग गरिने डाइनिङ टेबल हो, त्यसैले यो सही उत्तर हो। ३. 책장 भनेको किताब राख्ने दराज हो, त्यसैले यो मिल्दैन। ४. 옷장 भनेको कपडा राख्ने दराज हो, त्यसैले यो मिल्दैन। सही उत्तर २ हो जसको अर्थ डाइनिङ टेबल हो।"}, {"n": "56", "q": "은행에 예금해 둔 돈을 은행 창구를 거치지 않고 통장이나 카드를 사용하여 찾을 수 있는 장치입니다.", "options": ["카드 단말기", "카드 충전기", "커피 자판기", "현금 인출기"], "answer": 3, "explain": "१. 카드 단말기 भनेको कार्ड स्वाइप गर्ने मेसिन हो, त्यसैले यो मिल्दैन। २. 카드 충전기 भनेको कार्डमा पैसा थप्ने मेसिन हो, त्यसैले यो मिल्दैन। ३. 커피 자판기 भनेको कफी आउने मेसिन हो, त्यसैले यो मिल्दैन। ४. 현금 인출기 भनेको बैंकको काउन्टर नगई पासबुक वा कार्ड प्रयोग गरेर पैसा निकाल्ने एटीएम मेसिन हो, त्यसैले यो सही उत्तर हो। सही उत्तर ४ हो जसको अर्थ एटीएम मेसिन हो।"}, {"n": "57", "q": "일상 생활에 필요한 물건을 24시간 또는 긴 시간 동안 쉽게 구입할 수 있는 가게로 주로 음료, 스낵, 생필품 등을 판매합니다.", "options": ["마트", "매점", "백화점", "편의점"], "answer": 3, "explain": "१. 마트 भनेको ठूलो मार्ट हो। २. 매점 भनेको क्यान्टिन हो। ३. 백화점 भनेको डिपार्टमेन्ट स्टोर हो। ४. 편의점 भनेको २४ घण्टै वा लामो समयसम्म खुल्ने, दैनिक उपभोग्य वस्तुहरू सहजै किन्न पाइने सुविधा स्टोर (कन्भेनिएन्स स्टोर) हो, त्यसैले यो सही उत्तर हो। सही उत्तर ४ हो जसको अर्थ कन्भेनिएन्स स्टोर हो।"}, {"n": "58", "q": "사람들이 다양한 상품을 사고파는 곳으로, 보통 노점이나 작은 가게들이 모여 있고 신선한 식료품, 의류, 생활용품 등을 손쉽게 구입할 수 있는 상업 공간입니다.", "options": ["옷가게", "시장", "쇼핑몰", "수퍼마켓"], "answer": 1, "explain": "१. 옷가게 भनेको कपडा पसल हो, त्यसैले यो पूर्ण मिल्दैन। २. 시장 भनेको विभिन्न किसिमका सामान किनबेच गर्ने बजार (खुला वा पारम्परिक बजार) हो, त्यसैले यो सही उत्तर हो। ३. 쇼핑몰 भनेको सपिङ मल हो। ४. 수퍼마켓 भनेको सुपरमार्केट हो। सही उत्तर २ हो जसको अर्थ बजार (मार्केट) हो।"}, {"n": "59", "q": "머리카락을 자르거나 스타일링, 염색 등을 제공하는 곳으로 고객의 헤어와 뷰티에 관련된 다양한 미용 서비스를 제공합니다.", "options": ["미용실", "교육원", "이발소", "미용샵"], "answer": 0, "explain": "१. 미용실 भनेको कपाल काट्ने, स्टाइल गर्ने र रङ्ग्याउने ब्युटी पार्लर (सैलुन) हो, त्यसैले यो सही उत्तर हो। २. 교육원 भनेको शिक्षा दिने केन्द्र हो, त्यसैले यो मिल्दैन। ३. 이발소 भनेको परम्परागत पुरुषको कपाल काट्ने नापित पसल हो। ४. 미용샵 भनेको ब्युटी सप हो (तर सामान्यतया मि용실 प्रयोग हुन्छ)। सही उत्तर १ हो जसको अर्थ ब्युटी पार्लर वा सैलुन हो।"}, {"n": "60", "q": "질병이나 부상을 치료하고 건강을 돌보는 곳으로, 의사와 간호사들이 환자를 돌보고 진료, 검사, 수술 등의 의료 서비스를 제공합니다.", "options": ["병원", "약국", "은행", "극장"], "answer": 0, "explain": "१. 병원 भनेको रोग वा चोटपटकको उपचार गर्ने, डाक्टर र नर्सहरूले बिरामीको हेरचाह गर्ने अस्पताल हो, त्यसैले यो सही उत्तर हो। २. 약국 भनेको औषधि पसल हो, त्यसैले यो मिल्दैन। ३. 은행 भनेको बैंक हो, त्यसैले यो मिल्दैन। ४. 극장 भनेको सिनेमा हल हो, त्यसैले यो मिल्दैन। सही उत्तर १ हो जसको अर्थ अस्पताल हो।"}, {"n": "61", "q": "편지나 소포를 보내고 받는 곳으로, 우편 서비스를 제공합니다. 또한, 금융 서비스와 같은 다양한 서비스를 제공하기도 합니다.", "options": ["우체국", "은행", "병원", "학교"], "answer": 0, "explain": "우체국 भनेको हुलाक कार्यालय हो, जहाँ चिठी वा पार्सल पठाउने र प्राप्त गर्ने काम गरिन्छ र प्रश्नसँग मिल्छ। 은행 भनेको बैंक हो, यो हुलाक सेवा दिने ठाउँ होइन। 병원 भनेको अस्पताल हो, यो हुलाक कार्यालय होइन। 학교 भनेको विद्यालय हो, यो चिठी पठाउने ठाउँ होइन। सही उत्तर १ हो र यसको अर्थ हुलाक कार्यालय हो।"}, {"n": "62", "q": "학생이나 직장인들이 생활할 수 있는 숙소로, 학교나 직장 근처에 위치해 있고 주로 공동 생활 공간과 개인 공간이 나누어져 있습니다.", "options": ["교육원", "대학교", "기숙사", "휴게실"], "answer": 2, "explain": "교육원 भनेको तालिम केन्द्र हो, यो बस्ने होस्टेल होइन। 대학교 भनेको विश्वविद्यालय हो, यो विद्यार्थी वा कामदार बस्ने आवास होइन। 기숙사 भनेको होस्टेल हो, जहाँ विद्यार्थी वा कामदारहरू बस्छन् र साझा तथा व्यक्तिगत ठाउँहरू छुट्टाइएको हुन्छ र प्रश्नसँग मिल्छ। 휴게실 भनेको विश्राम कक्ष हो, यो सुत्ने बासस्थान होइन। सही उत्तर ३ हो र यसको अर्थ होस्टेल हो।"}, {"n": "63", "q": "넓은 길이나 큰 문을 의미하며, 보통 중요한 장소나 건물의 입구에 위치한 크고 아름다운 문을 가리킵니다.", "options": ["광장", "극장", "뒷문", "정문"], "answer": 3, "explain": "광장 भनेको खुला चोक वा बजार हो, यो ढोका होइन। 극장 भनेको चलचित्र घर वा थिएटर हो, यो प्रवेशद्वार होइन। 뒷문 भनेको पछाडिको ढोका हो, यो मुख्य द्वार होइन। 정문 भनेको मुख्य प्रवेशद्वार हो, जसले ठूलो बाटो वा मुख्य ढोकालाई जनाउँछ र प्रश्नसँग मिल्छ। सही उत्तर ४ हो र यसको अर्थ मुख्य प्रवेशद्वार हो।"}, {"n": "64", "q": "나라의 교육과 관련된 정책을 만들고 학교 교육을 관리하는 기관입니다. 학생들의 학습 환경을 개선하고 교육 발전을 위해 일합니다.", "options": ["노동부", "교육부", "과학부", "관광부"], "answer": 1, "explain": "1. 노동부 भनेको श्रम मन्त्रालय हो। 2. 교육부 भनेको शिक्षा मन्त्रालय हो, जसले देशको शिक्षा नीति बनाउँछ र विद्यालय शिक्षाको व्यवस्थापन गर्छ त्यसैले यो सही उत्तर हो। 3. 과학부 भनेको विज्ञान मन्त्रालय हो। 4. 관광부 भनेको पर्यटन मन्त्रालय हो। सही उत्तर 2 नम्बरको 교육부 (शिक्षा मन्त्रालय) हो।"}, {"n": "65", "q": "일자리와 노동 문제를 다루는 기관으로, 근로자의 권익 보호와 고용 지원을 담당합니다. 일자리 창출과 근로 환경 개선을 위해 다양한 정책을 펼칩니다.", "options": ["위생부", "내무부", "고용노동부", "도시개발부"], "answer": 2, "explain": "1. 위생부 भनेको सरसफाइ मन्त्रालय हो। 2. 내무부 भनेको गृह मन्त्रालय हो। 3. 고용노동부 भनेको रोजगार तथा श्रम मन्त्रालय हो, जसले रोजगारी र श्रमका मुद्दा हेर्छ तथा श्रमिकको अधिकारको रक्षा गर्छ त्यसैले यो सही उत्तर हो। 4. 도시개발부 भनेको सहरी विकास मन्त्रालय हो। सही उत्तर 3 नम्बरको 고용노동부 (रोजगार तथा श्रम मन्त्रालय) हो।"}, {"n": "66", "q": "집 안에서 바닥을 평평하게 만들어 사람들이 걷거나 앉을 수 있게 한 부분입니다. 주로 나무로 만들어져 편안한 느낌을 줍니다.", "options": ["지붕", "천장", "마루", "합판"], "answer": 2, "explain": "1. 지붕 भनेको छानो हो। 2. 천장 भनेको घरको छानाको भित्री भाग (सिलिङ) हो। 3. 마루 भनेको घरको काठको फ्लोर वा पिँढी हो, जसलाई हिँड्न र बस्न मिल्ने गरी सम्याइएको हुन्छ त्यसैले यो सही उत्तर हो। 4. 합판 भनेको प्लेइवुड हो। सही उत्तर 3 नम्बरको 마루 (फ्लोर/पिँढी) हो।"}, {"n": "67", "q": "방 바닥을 따뜻하게 데우는 한국 전통 난방 방식으로 아궁이에서 불을 피워 바닥 아래로 열기를 보내 방 전체를 따뜻하게 합니다.", "options": ["한옥", "민박", "마당", "온돌"], "answer": 3, "explain": "1. 한옥 भनेको परम्परागत कोरियन घर हो। 2. 민박 भनेको होमस्टे हो। 3. 마당 भनेको आँगन हो। 4. 온돌 भनेको ओण्डोल हो, जुन कोरियन परम्परागत तातो बनाउने प्रणाली हो जसले आगो बालेर कोठा न्यानो पार्छ त्यसैले यो सही उत्तर हो। सही उत्तर 4 नम्बरको 온돌 (ओण्डोल) हो।"}, {"n": "68", "q": "태양의 움직임을 기준으로 만든 달력으로, 우리가 일상에서 사용하는 일반적인 영어 달력입니다.", "options": ["음력", "양력", "일과", "소설"], "answer": 1, "explain": "1. 음력 भनेको चन्द्रमामा आधारित पात्रो (चन्द्र पात्रो) हो। 2. 양력 भनेको सूर्यको चालमा आधारित पात्रो (सौर्य पात्रो) हो, जसलाई हामी दैनिक जीवनमा प्रयोग गर्ने अंग्रेजी पात्रो भन्छौं त्यसैले यो सही उत्तर हो। 3. 일과 भनेको दैनिकी हो। 4. 소설 भनेको उपन्यास हो। सही उत्तर 2 नम्बरको 양력 (सौर्य पात्रो) हो।"}, {"n": "69", "q": "달의 움직임을 기준으로 만든 달력으로, 전통 명절이나 제사와 같은 행사에 주로 사용됩니다.", "options": ["음력", "양력", "일정", "약속"], "answer": 0, "explain": "1. 음력 भनेको चन्द्रमाको चालमा आधारित पात्रो हो, जुन परम्परागत चाडपर्व र पितृपूजा जस्ता कार्यक्रममा प्रयोग हुन्छ त्यसैले यो सही उत्तर हो। 2. 양력 भनेको सौर्य पात्रो हो। 3. 일정 भनेको तालिका हो। 4. 약속 भनेको बाचा हो। सही उत्तर 1 नम्बरको 음력 (चन्द्र पात्रो) हो।"}, {"n": "70", "q": "한국에서 생일 때 빠지지 않고 꼭 먹는 음식, 특히 산모가 아기를 낳은 후 이것을 먹습니다.", "options": ["불고기", "미역국", "케이크", "삼계탕"], "answer": 1, "explain": "1. 불고기 भनेको बुलगोकी (मासुको परिकार) हो। 2. 미역국 भनेको समुद्री लेउको झोल (मियाकगुक) हो, जुन कोरियनहरूले जन्मदिनमा र बच्चा जन्माएपछि आमाले खाने गर्छन् त्यसैले यो सही उत्तर हो। 3. 케이크 भनेको केक हो। 4. 삼계탕 भनेको सामगे탕 (कुखुराको सुप) हो। सही उत्तर 2 नम्बरको 미역국 (समुद्री लेउको झोल) हो।"}, {"n": "71", "q": "한국의 대표적인 명절로 음력 1월 1일에 한 해가 시작되는 것을 축하하면서 기념하는 날입니다. 가족들이 모여서 차례를 지내고 어른들께 세배를 합니다.", "options": ["단오", "폐백", "설날", "추석"], "answer": 2, "explain": "1. 단오 भनेको दानो पर्व हो। 2. 폐백 भनेको बिहेको एक परम्परागत विधि हो। 3. 설날 भनेको सोलाल (नयाँ वर्ष) हो, जुन चन्द्र पात्रो अनुसारको पुस/माघ १ गते मनाइन्छ र जसमा परिवार जम्मा भएर पुजा गर्छन् तथा आशीर्वाद लिन्छन् त्यसैले यो सही उत्तर हो। 4. 추석 भनेको छुसक पर्व हो। सही उत्तर 3 नम्बरको 설날 (सोलाल) हो।"}, {"n": "72", "q": "한국의 대표적인 명절로 '한가위'라고도 합니다. 아침에 성묘를 하고 차례를 지냅니다. 이날에는 갓 수확한 쌀로 쌀밥을 짓고 송편을 만들어 먹습니다.", "options": ["설날", "추석", "정월대보름", "크리스마스"], "answer": 1, "explain": "1. 설날 भनेको सोलाल हो। 2. 추석 भनेको छुसक हो, जसलाई 'हानगावी' पनि भनिन्छ र यसमा नयाँ चामलको भात र सोङप्योन खाइन्छ त्यसैले यो सही उत्तर हो। 3. 정월대보름 भनेको पहिलो पूर्णिमाको दिन हो। 4. 크리스마스 भनेको क्रिसमस हो। सही उत्तर 2 नम्बरको 추석 (छुसक) हो।"}, {"n": "73", "q": "어떤 사람이 세상에 태어난 것을 해마다 한 번씩 기념하거나 축하하는 날입니다.", "options": ["돌잔치", "생일", "결혼식", "제사"], "answer": 1, "explain": "1. 돌잔치 भनेको बच्चाको पहिलो जन्मदिनको उत्सव हो। 2. 생일 भनेको जन्मदिन हो, जसले कोही व्यक्ति संसारमा जन्मिएको दिनलाई हरेक वर्ष मनाउने वा उत्सव मनाउने दिनलाई जनाउँछ त्यसैले यो सही उत्तर हो। 3. 결혼식 भनेको विवाह समारोह हो। 4. 제사 भनेको पितृपूजा हो। सही उत्तर 2 नम्बरको 생일 (जन्मदिन) हो।"}, {"n": "74", "q": "직장이나 일터로 일을 하러 가는 것을 말합니다. 보통 아침에 일정한 시간에 회사나 근무지로 나가는 것을 뜻합니다.", "options": ["출근", "퇴근", "조퇴", "결근"], "answer": 0, "explain": "1. 출근 भनेको काममा जानु (प्रवेश गर्नु) हो, जसले बिहान निश्चित समयमा कम्पनी वा काम गर्ने ठाउँमा जानुलाई बुझाउँछ त्यसैले यो सही उत्तर हो। 2. 퇴근 भनेको कामबाट छुट्नु हो। 3. 조퇴 भनेको चाँडै कामबाट घर फर्किनु हो। 4. 결근 भनेको अनुपस्थित हुनु हो। सही उत्तर 1 नम्बरको 출근 (काममा जानु) हो।"}, {"n": "75", "q": "하루 일과를 마치고 직장에서 집으로 돌아가는 것을 말합니다. 보통 일 끝난 후에 일터에서 나오는 것을 뜻합니다.", "options": ["퇴근", "휴일", "취직", "출석"], "answer": 0, "explain": "1. 퇴근 भनेको कामबाट छुट्नु हो, जसले दिनभरको काम सकेर अफिसबाट घर फर्किनुलाई बुझाउँछ त्यसैले यो सही उत्तर हो। 2. 휴일 भनेको बिदाको दिन हो। 3. 취직 भनेको जागिर खानु हो। 4. 출석 भनेको हाजिरी हो। सही उत्तर 1 नम्बरको 퇴근 (कामबाट छुट्नु) हो।"}, {"n": "76", "q": "의무가 있어 전문적으로 하는 것이 아니라 일상 생활에서 즐기기 위하여 하는 여러 활동을 말할 수 있습니다.", "options": ["사회 활동", "직장 활동", "취미 활동", "봉사 활동"], "answer": 2, "explain": "사회 활동 भनेको सामाजिक गतिविधि हो, यो रमाइलोको लागि मात्र गर्ने होइन। 직장 활동 भनेको कार्यालयको काम हो, यो फुर्सदको समयमा गर्ने क्रियाकलाप होइन। 취미 활동 भनेको रुचि वा पारखी गतिविधि हो, जुन अनिवार्य नभई दैनिक जीवनमा रमाइलोको लागि गरिन्छ र प्रश्नसँग मिल्छ। 봉사 활동 भनेको स्वयंसेवा हो, यो फुर्सदमा गर्ने रुचि मात्र होइन। सही उत्तर ३ हो र यसको अर्थ रुचि वा पारखी क्रियाकलाप हो।"}, {"n": "77", "q": "3한 4온 현상이 나타나는 계절로, 눈이 내리고 기온 이 낮아 사람들이 따뜻한 옷을 입고 실내 활동을 많이 합니다.", "options": ["봄", "여름", "가을", "겨울"], "answer": 3, "explain": "봄 भनेको वसन्त ऋतु हो, यो हिउँ पर्ने मौसम होइन। 여름 भनेको गर्मी ऋतु हो, यो चिसो मौसम होइन। 가을 भनेको शरद ऋतु हो, यो जाडो ऋतु होइन। 겨울 भनेको जाडो ऋतु हो, जसमा हिउँ पर्छ र तापक्रम कम हुन्छ अनि मानिसहरू न्यानो कपडा लगाएर घरभित्र बढी बस्छन् र प्रश्नसँग मिल्छ। सही उत्तर ४ हो र यसको अर्थ जाडो ऋतु हो।"}, {"n": "78", "q": "날씨가 따뜻해지고 꽃이 피며, 새싹이 돋는 생명의 계절입니다. 겨울의 추위가 지나고 자연이 다시 깨어나는 시기입니다.", "options": ["가을", "봄", "겨울", "여름"], "answer": 1, "explain": "가을 भनेको पातहरू पहेँलो हुने र झर्ने ऋतु हो, यो यस विवरणसँग मिल्दैन। 봄 भनेको मौसम न्यानो हुने, फूलहरू फुल्ने र नयाँ पालुवा पलाउने वसन्त ऋतु हो, यो नै सही उत्तर हो। 겨울 भनेको धेरै चिसो हुने हिउँद ऋतु हो, यो यस विवरणसँग मिल्दैन। 여름 भनेको घाम चर्को लाग्ने र गर्मी हुने ग्रष्म ऋतु हो, यो यस विवरणसँग मिल्दैन। सही उत्तर दुई नम्बरको 봄 हो जसको अर्थ वसन्त ऋतु हुन्छ।"}, {"n": "79", "q": "햇볕이 강하고 가장 더운 계절로, 장마와 소나기가 자주 나타납니다. 사람들은 시원한 곳을 찾아 피서 를 즐깁니다.", "options": ["봄", "겨울", "가을", "여름"], "answer": 3, "explain": "봄 भनेको मौसम न्यानो हुने र फूल फुल्ने वसन्त ऋतु हो, यो यस विवरणसँग मिल्दैन। 겨울 भनेको चिसो हुने हिउँद ऋतु हो, यो यस विवरणसँग मिल्दैन। 가을 भनेको मौसम सफा र चिसो हुने शरद ऋतु हो, यो यस विवरणसँग मिल्दैन। 여름 भनेको घाम चर्को लाग्ने, अत्यधिक गर्मी हुने र वर्षा हुने ग्रष्म ऋतु हो, यो नै सही उत्तर हो। सही उत्तर चार नम्बरको 여름 हो जसको अर्थ ग्रष्म ऋतु हुन्छ।"}, {"n": "80", "q": "날씨가 선선해지고 나뭇잎이 붉게 물드는 계절입니다. 곡식과 과일이 익는 수확의 시기이기도 합니다.", "options": ["봄", "여름", "겨울", "가을"], "answer": 3, "explain": "봄 भनेको वसन्त ऋतु हो, यो यस विवरणसँग मिल्दैन। 여름 भनेको गर्मी हुने ग्रष्म ऋतु हो, यो यस विवरणसँग मिल्दैन। 겨울 भनेको चिसो मौसमको हिउँद ऋतु हो, यो यस विवरणसँग मिल्दैन। 가을 भनेको मौसम चिसो हुने, रूखका पातहरू राता हुने र बाली कटनी गरिने शरद ऋतु हो, यो नै सही उत्तर हो। सही उत्तर चार नम्बरको 가을 हो जसको अर्थ शरद ऋतु हुन्छ।"}, {"n": "81", "q": "여름 초에 비가 여러 날 동안 계속 내리는 시기입니다. 습도가 높고 흐린 날이 많아 불쾌지수가 올라가기도 합니다.", "options": ["소나기", "이슬비", "장마철", "겨울철"], "answer": 2, "explain": "१. 소나기 (झरी/मुसलधारे पानी) हो, यो उत्तर मिलेन। २. 이슬비 (सिमसिमे पानी) हो, यो उत्तर मिलेन। ३. 장마철 (लामो वर्षायाम) हो, यो गर्मीको सुरुमा धेरै दिनसम्म लगातार पानी पर्ने समय हो, त्यसैले यो सही उत्तर हो। ४. 겨울철 (हिउँद ऋतु) हो, यो उत्तर मिलेन। सही उत्तर ३ नम्बरको 장마철 हो जसको अर्थ वर्षायाम हो।"}, {"n": "82", "q": "기온이 매우 높고, 습도가 높아 더운 날씨가 지속되는 현상입니다. 이로 인해 몸이 피로하고 불쾌한 기 분이 들 수 있습니다.", "options": ["무더위", "장마철", "3한 4온", "성수기"], "answer": 0, "explain": "무더위 भनेको तापक्रम धेरै उच्च हुने र आर्द्रता बढेर अत्यधिक गर्मी महसुस हुने अवस्था हो, यो नै सही उत्तर हो। 장마철 भनेको लगातार पानी पर्ने वर्षायामको मौसम हो, यो यस विवरणसँग मिल्दैन। 삼한사온 भनेको कोरियामा जाडो मौसममा तीन दिन चिसो र चार दिन न्यानो हुने मौसमी क्रम हो, यो यस विवरणसँग मिल्दैन। 성수기 भनेको व्यापार वा पर्यटनको अत्यधिक व्यस्त र मुख्य मौसम हो, यो यस विवरणसँग मिल्दैन। सही उत्तर एक नम्बरको 무더위 हो जसको अर्थ अत्यधिक गर्मी हुन्छ। तेस्रो विकल्प '3한 4온' किताबमा छापिएजस्तै राखिएको छ — यो 삼한사온 को अङ्क-रूप हो।"}, {"n": "83", "q": "바다와 육지가 만나는 곳으로, 모래가 깔려 있고 바다를 가까이에서 즐길 수 있는 장소입니다. 여름철 에 많은 사람들이 휴식을 취하거나 물놀이를 즐깁 니다.", "options": ["호수", "해변", "산맥", "연못"], "answer": 1, "explain": "१. 호수 (ताल) हो, यो उत्तर मिलेन। २. 해변 (समुद्र किनार/समुद्र तट) हो, यो समुद्र र जमिन जोडिने ठाउँ जहाँ बालुवा फैलिएको हुन्छ र गर्मीमा मानिसहरू आराम गर्न जान्छन्, त्यसैले यो सही उत्तर हो। ३. 산맥 (पहाडी श्रृङ्खला) हो, यो उत्तर मिलेन। ४. 연못 (पोखरी) हो, यो उत्तर मिलेन। सही उत्तर २ नम्बरको 해변 हो जसको अर्थ समुद्र किनार हो।"}, {"n": "84", "q": "가을에 나뭇잎이 붉거나 노랗게 변하는 현상입니다. 기온이 떨어지면서 엽록소가 줄어들어 다양한 색을 띠게 되며, 가을의 대표적인 풍경으로 아름답습니다.", "options": ["산맥", "단풍", "야경", "전망"], "answer": 1, "explain": "१. 산맥 (पहाडी श्रृङ्खला) हो, यो उत्तर मिलेन। २. 단풍 (पात रातो वा पहेँलो हुने शरद ऋतुको दृश्य) हो, यो शरद ऋतुमा रुखका पातहरू राता वा पहेँलो हुने प्राकृतिक प्रक्रिया हो, त्यसैले यो सही उत्तर हो। ३. 야경 (रातको दृश्य) हो, यो उत्तर मिलेन। ४. 전망 (दृश्यावलोकन) हो, यो उत्तर मिलेन। सही उत्तर २ नम्बरको 단풍 हो जसको अर्थ पात पहेँलो वा रातो हुने शरद ऋतुको दृश्य हो।"}, {"n": "85", "q": "특정한 주제나 기념일을 기리기 위해 사람들이 모여 즐기는 행사입니다. 음악, 음식, 문화 등의 다양 한 활동을 통해 즐거운 분위기를 만듭니다.", "options": ["명절", "생일", "축제", "휴일"], "answer": 2, "explain": "१. 명절 (चाडपर्व) हो, यो उत्तर मिलेन। २. 생일 (जन्मदिन) हो, यो उत्तर मिलेन। ३. 축제 (महोत्सव/चाड) हो, यो कुनै विशेष विषय वा उत्सव मनाउन मानिसहरू जम्मा भएर रमाइलो गर्ने कार्यक्रम हो, त्यसैले यो सही उत्तर हो। ४. 휴일 (बिदाको दिन) हो, यो उत्तर मिलेन। सही उत्तर ३ नम्बरको 축제 हो जसको अर्थ महोत्सव हो।"}, {"n": "86", "q": "학교나 회사에서 참가자들이 다양한 스포츠 활동 을 통해 경쟁하는 행사입니다. 팀워크와 스포츠 정 신을 기르며, 학생이나 직원들이 즐겁게 참여하는 활동입니다.", "options": ["운동회", "동호회", "동문회", "금융회"], "answer": 0, "explain": "१. 운동회 (खेलकुद प्रतियोगिता) हो, यो स्कुल वा कम्पनीमा विभिन्न खेलकुद गतिविधिमार्फत प्रतिस्पर्धा गर्ने कार्यक्रम हो, त्यसैले यो सही उत्तर हो। २. 동호회 (सौखिन क्लब) हो, यो उत्तर मिलेन। ३. 동문회 (पूर्वविद्यार्थी मिलनकेन्द्र) हो, यो उत्तर मिलेन। ४. 금융회 (वित्तीय संस्था) हो, यो उत्तर मिलेन। सही उत्तर १ नम्बरको 운동회 हो जसको अर्थ खेलकुद प्रतियोगिता हो।"}, {"n": "87", "q": "특정한 시간과 장소에서의 공기의 온도를 말하며 이를 통해서 날씨의 변화를 알 수 있는 중요한 지표로, 일반적으로 섭씨(°C)나 화씨(°F)로 측정됩니다.", "options": ["기온", "환경", "난방", "냉방"], "answer": 0, "explain": "१. 기온 (तापक्रम) हो, यो निश्चित समय र स्थानको हावाको तापक्रम हो जसले मौसमको परिवर्तन बुझाउँछ, त्यसैले यो सही उत्तर हो। २. 환경 (वातावरण) हो, यो उत्तर मिलेन। ३. 난방 (तातो बनाउने व्यवस्था/हिटिङ) हो, यो उत्तर मिलेन। ४. 냉방 (चिसो बनाउने व्यवस्था/एन्कर्डिसनिङ) हो, यो उत्तर मिलेन। सही उत्तर १ नम्बरको 기온 हो जसको अर्थ तापक्रम हो।"}, {"n": "88", "q": "혈연이나 결혼으로 연결된 사람들로, 서로 돌보고 지원하는 관계입니다. 부모, 형제자매, 자녀 등 다양 한 구성원이 있을 수 있습니다.", "options": ["배우자", "친척", "호칭", "가족"], "answer": 3, "explain": "배우자 भनेको पति वा पत्नी भन्ने बुझाउने शब्द हो, यो यस विवरणसँग मिल्दैन। 친척 भनेको रक्तसम्बन्ध वा विवाहले जोडिएका अन्य नातेदारहरू हुन्, यो यस विवरणसँग मिल्दैन। 호칭 भनेको मानिसलाई सम्बोधन गर्ने पद वा नाम हो, यो यस विवरणसँग मिल्दैन। 가족 भनेको रगतको नाता वा विवाहले जोडिएर एकै ठाउँमा बसेर एकअर्कालाई सहयोग गर्ने परिवार हो, यो नै सही उत्तर हो। सही उत्तर चार नम्बरको 가족 हो जसको अर्थ परिवार हुन्छ।"}, {"n": "89", "q": "함께 시간을 보내며 마음을 나누는 가까운 사람입니다. 서로를 이해하고 도와주는 소중한 존재입니다.", "options": ["자매", "친구", "이웃", "남매"], "answer": 1, "explain": "१. 자매 (दिदीबहिनी) हो, यो उत्तर मिलेन। २. 친구 (साथी) हो, यो सँगै समय बिताउने र मन साटासाट गर्ने नजिकको व्यक्ति हो, त्यसैले यो सही उत्तर हो। ३. 이웃 (छिमेकी) हो, यो उत्तर मिलेन। ४. 남매 (दाजुबहिनी/भाइदिदी) हो, यो उत्तर मिलेन। सही उत्तर २ नम्बरको 친구 हो जसको अर्थ साथी हो।"}, {"n": "90", "q": "같은 부모에게서 태어난 남자 형제들을 말합니다. 서로 가까운 사이로, 함께 자라며 정을 나누는 가족 구성원입니다.", "options": ["형제", "자매", "남매", "모녀"], "answer": 0, "explain": "१. 형제 (दाजुभाइ) हो, यो एउटै आमाबाबुबाट जन्मिएका दाजुभाइहरूलाई बुझाउने शब्द हो, त्यसैले यो सही उत्तर हो। २. 자매 (दिदीबहिनी) हो, यो उत्तर मिलेन। ३. 남매 (दाजुबहिनी/भाइदिदी) हो, यो उत्तर मिलेन। ४. 모녀 (आमा र छोरी) हो, यो उत्तर मिलेन। सही उत्तर १ नम्बरको 형제 हो जसको अर्थ दाजुभाइ हो।"}, {"n": "91", "q": "같은 부모에게서 태어난 여자 형제들을 말합니다. 함께 자라며 정을 나누는 가까운 가족입니다.", "options": ["형제", "자매", "조카", "손자"], "answer": 1, "explain": "पहिलो विकल्प 형제 को अर्थ दाजुभाइ वा दाजुभाइ-दिदीबहिनी हो, तर यो प्रश्नले 'महिला दाजुभाइ (दिदीबहिनी)' लाई मात्र भनेको हुनाले यो पूर्ण मिल्दैन। दोस्रो विकल्प 자매 को अर्थ दिदीबहिनी हो र यो एउटै आमाबुवाबाट जन्मेका महिला दिदीबहिनीहरूलाई जनाउने शब्द भएकाले सही उत्तर हो। तेस्रो विकल्प 조카 को अर्थ भतिजा वा भतिजी हो। चौथो विकल्प 손자 को अर्थ नाति हो। तसर्थ, सही उत्तर 자매 हो जसको अर्थ दिदीबहिनी हुन्छ।"}, {"n": "92", "q": "같은 부모에게서 태어난 오빠와 여동생 또는 형과 누이의 관계를 말합니다. 서로 다른 성별의 형제자매를 이르는 말입니다.", "options": ["조부", "남매", "부모", "자매"], "answer": 1, "explain": "पहिलो विकल्प 조부 को अर्थ बाजे वा हजुरबुवा हो। दोस्रो विकल्प 남매 को अर्थ दाजु-बहिनी वा भाइ-दिदी हो जुन विभिन्न लिङ्गका दाजुभाइ-दिदीबहिनीलाई बुझाउने शब्द भएकाले सही उत्तर हो। तेस्रो विकल्प 부모 को अर्थ आमाबुवा हो। चौथो विकल्प 자매 को अर्थ दिदीबहिनी हो। तसर्थ, सही उत्तर 남매 हो जसको अर्थ दाजु-बहिनी (विभिन्न लिङ्गका सहोदर) हुन्छ।"}, {"n": "93", "q": "사람의 생각이나 행동에서 나타나는 고유한 성질입니다. 태도, 감정 표현, 대인 관계 방식 등에 영향을 줍니다.", "options": ["행위", "신장", "성격", "외모"], "answer": 2, "explain": "१. 행위 भनेको काम वा व्यवहार हो, त्यसैले यो विवरणसँग मिल्दैन।\n२. 신장 भनेको मानिसको उचाइ हो, त्यसैले यो विवरणसँग मिल्दैन।\n३. 성격 भनेको मानिसको स्वभाव हो, जसले सोच र व्यवहारलाई देखाउँछ, त्यसैले यो सही उत्तर हो।\n४. 외모 भनेको मानिसको बाहिरी रूप हो, त्यसैले यो विवरणसँग मिल्दैन।\nतसर्थ सही उत्तर ३ नम्बरको 성격 हो, जसको अर्थ स्वभाव हो।"}, {"n": "94", "q": "사람의 얼굴 생김새나 전체적인 겉모습을 말합니다. 첫인상이나 다른 사람에게 보이는 시각적인 특징에 해당합니다.", "options": ["체중", "신장", "외모", "태도"], "answer": 2, "explain": "पहिलो विकल्प 체중 को अर्थ तौल हो। दोस्रो विकल्प 신장 को अर्थ उचाइ हो। तेस्रो विकल्प 외모 को अर्थ बाह्य रूप वा मुहारको बनावट हो जुन मानिसको देखिने स्वरूप हो, त्यसैले यो सही उत्तर हो। चौथो विकल्प 태도 को अर्थ बानी वा व्यवहार हो। तसर्थ, सही उत्तर 외모 हो जसको अर्थ बाह्य रूप वा मुहारको बनावट हुन्छ।"}, {"n": "95", "q": "같은 취미를 가진 사람들이 취미 활동을 같이 하는 모임입니다.", "options": ["동호회", "운동회", "동문회", "금융회"], "answer": 0, "explain": "पहिलो विकल्प 동호회 को अर्थ रुचि वा सोख मिल्ने मानिसहरूको समूह (क्लब) हो, जसले सँगै सोखको काम गर्छन् र यो सही उत्तर हो। दोस्रो विकल्प 운동회 को अर्थ खेलकुद प्रतियोगिता हो। तेस्रो विकल्प 동문회 को अर्थ पूर्वविद्यार्थीहरूको मिलन केन्द्र वा संघ हो। चौथो विकल्प 금융회 को अर्थ वित्तीय संस्था हो। तसर्थ, सही उत्तर 동호회 हो जसको अर्थ रुचि मिल्ने साथीहरूको समूह हुन्छ।"}, {"n": "96", "q": "자신보다 나이가 많은 사람, 나이가 어려도 처음 만난 사람이나 별로 가깝지 않은 사람과 사용하는 말입니다.", "options": ["반말", "높임말", "외국어", "표준어"], "answer": 1, "explain": "१. 반말 भनेको आफूभन्दा साना वा नजिकका मानिससँग बोलिने ठाडो भाषा हो, त्यसैले यो विवरणसँग मिल्दैन।\n२. 높임말 भनेको आफूभन्दा ठूला वा पहिलो पटक भेटिएका मानिससँग बोलिने आदरार्थी भाषा हो, त्यसैले यो विवरणसँग मिल्छ।\n३. 외국어 भनेको विदेशी भाषा हो, त्यसैले यो विवरणसँग मिल्दैन।\n४. 표준어 भनेको मानक भाषा हो, त्यसैले यो विवरणसँग मिल्दैन।\nतसर्थ सही उत्तर २ नम्बरको 높임말 हो, जसको अर्थ आदरार्थी भाषा हो।"}, {"n": "97", "q": "자기보다 나이가 어리거나 회사에서 직위가 낮은 사람에게 낮추어 하는 말입니다.", "options": ["반말", "높임말", "사투리", "모국어"], "answer": 0, "explain": "१. 반말 भनेको आफूभन्दा साना वा तल्लो पदका मानिसलाई बोलिने ठाडो भाषा हो, त्यसैले यो विवरणसँग मिल्छ।\n२. 높임말 भनेको ठूला मानिसलाई प्रयोग गरिने आदरयुक्त भाषा हो, त्यसैले यो विवरणसँग मिल्दैन।\n३. 사투리 भनेको क्षेत्र अनुसार बोलिने स्थानीय भाषिका हो, त्यसैले यो विवरणसँग मिल्दैन।\n४. 모국어 भनेको मातृभाषा हो, त्यसैले यो विवरणसँग मिल्दैन।\nतसर्थ सही उत्तर १ नम्बरको 반말 हो, जसको अर्थ ठाडो भाषा हो।"}, {"n": "98", "q": "떠나는 사람을 기쁨 마음으로 보내는 뜻으로 같이 일하는 동료나 친구들이 모이는 자리입니다.", "options": ["야유회", "환영회", "환송회", "송년회"], "answer": 2, "explain": "१. 야유회 भनेको सहकर्मीहरूसँग घुम्न जाने पिकनिक हो, त्यसैले यो विवरणसँग मिल्दैन।\n२. 환영회 भनेको नयाँ मानिसलाई स्वागत गर्ने कार्यक्रम हो, त्यसैले यो विवरणसँग मिल्दैन।\n३. 환송회 भनेको छाडेर जाने साथी वा सहकर्मीलाई बिदाइ गर्ने कार्यक्रम हो, त्यसैले यो विवरणसँग मिल्छ।\n४. 송년회 भनेको वर्षको अन्त्यमा गरिने भोज हो, त्यसैले यो विवरणसँग मिल्दैन।\nतसर्थ सही उत्तर ३ नम्बरको 환송회 हो, जसको अर्थ बिदाइ भोज हो।"}, {"n": "99", "q": "밥에 여러 가지 나물, 고기, 고추장 등을 올리고 잘 섞어 먹는 한국 음식이에요. 다양한 재료가 어우러져 맛있고 영양가가 높습니다.", "options": ["김치", "비빔밥", "불고기", "삼계탕"], "answer": 1, "explain": "पहिलो विकल्प 김치 को अर्थ किम्ची हो। दोस्रो विकल्प 비빔밥 को अर्थ बिबिम्बाब हो जुन भातमा तरकारी, मासु र खोर्सानीको पेस्ट (कोचुजाङ) मिसाएर खाइने कोरियाली खाना हो, त्यसैले यो सही उत्तर हो। तेस्रो विकल्प 불고기 को अर्थ बुलगोगी हो। चौथो विकल्प 삼계탕 को अर्थ साम्येतं हो। तसर्थ, सही उत्तर 비빔밥 हो जसको अर्थ विभिन्न परिकार मिसाइएको भात हुन्छ।"}, {"n": "100", "q": "얇게 썬 고기를 간장, 설탕, 마늘 등으로 양념해 구워 먹는 한국 음식입니다. 보통 소고기나 돼지고기를 사용하며, 달콤하고 짭짤한 맛이 특징입니다.", "options": ["삼겹살", "삼계탕", "불고기", "제육볶음"], "answer": 2, "explain": "१. 삼겹살 भनेको बंगुरको पेटको मासु पोलेर खाने परिकार हो, त्यसैले यो विवरणसँग मिल्दैन।\n२. 삼계탕 भनेको कुखुराको मासुमा जडीबुटी हालेर बनाइने सुप हो, त्यसैले यो विवरणसँग मिल्दैन।\n३. 불고기 भनेको मसिनो गरी काटेको मासुमा भटमासको सस र चिनी हालेर पकाउने गुलियो-नुनिलो कोरियाली खाना हो, त्यसैले यो विवरणसँग मिल्छ।\n४. 제육볶음 भनेको पिरो लेदोमा भुटेको बंगुरको मासु हो, त्यसैले यो विवरणसँग मिल्दैन।\nतसर्थ सही उत्तर ३ नम्बरको 불고기 हो, जसको अर्थ मसिनो गरी काटेर पोलेको मासु हो।"}];
+
+const PER_PAGE = 20;
+const TOTAL = QUESTIONS.length;
+const SET_ID = 'eps-vocab-set-02';
+const answers = {}; // question index -> chosen option index
+let page = 0;
+let submitted = false;
+let reviewFilter = 'all';
+
+// --- progress auto-save (localStorage) ---
+// Saved per set (key includes SET_ID), so each set file keeps its own
+// progress. Wrapped in try/catch: if the browser blocks storage, the quiz
+// still works, it just won't remember progress.
+const STORE_KEY = 'eps-quiz-' + SET_ID;
+function storeAvailable() {
+  try { localStorage.setItem('__eps_test__', '1'); localStorage.removeItem('__eps_test__'); return true; }
+  catch (e) { return false; }
+}
+const storeOK = storeAvailable();
+function saveProgress() {
+  if (!storeOK) return;
+  try { localStorage.setItem(STORE_KEY, JSON.stringify({ answers: answers, page: page })); } catch (e) {}
+}
+function loadProgress() {
+  if (!storeOK) return;
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data && data.answers) {
+      Object.keys(data.answers).forEach(k => { answers[k] = data.answers[k]; });
+      if (typeof data.page === 'number' && data.page >= 0 && data.page < Math.ceil(TOTAL / PER_PAGE)) page = data.page;
+    }
+  } catch (e) {}
+}
+function clearProgress() {
+  if (storeOK) { try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
+}
+loadProgress();
+
+const $ = (id) => document.getElementById(id);
+const circled = ['①','②','③','④'];
+
+function updateProgress() {
+  const done = Object.keys(answers).length;
+  $('progressBar').style.width = (done / TOTAL * 100) + '%';
+  $('progressText').textContent = done + ' / ' + TOTAL + ' answered';
+  $('submitHint').textContent = done === TOTAL ? 'All answered — ready to submit!' : (TOTAL - done) + ' unanswered (counted wrong on submit).';
+}
+
+// Renders "① <option text>" into `el`, wrapping the FIRST occurrence of
+// the underlined substring (if any) in <span class="ul"> so it gets a real
+// CSS underline — never a combining mark (U+0332 renders as tofu boxes on
+// some devices). Uses text nodes only, never innerHTML, so option text is
+// never parsed as markup. Questions without an "underlined" field (e.g.
+// the 600-question quiz) render plain text exactly as before.
+function renderOptionText(el, prefix, opt, under) {
+  el.appendChild(document.createTextNode(prefix + ' '));
+  const u = under || '';
+  const idx = u ? opt.indexOf(u) : -1;
+  if (idx < 0) {
+    el.appendChild(document.createTextNode(opt));
+    return;
+  }
+  if (idx > 0) el.appendChild(document.createTextNode(opt.slice(0, idx)));
+  const span = document.createElement('span');
+  span.className = 'ul';
+  span.appendChild(document.createTextNode(u));
+  el.appendChild(span);
+  if (idx + u.length < opt.length) {
+    el.appendChild(document.createTextNode(opt.slice(idx + u.length)));
+  }
+}
+
+function renderPage() {
+  const list = $('questionList');
+  list.innerHTML = '';
+  const start = page * PER_PAGE;
+  const end = Math.min(start + PER_PAGE, TOTAL);
+  for (let i = start; i < end; i++) {
+    const q = QUESTIONS[i];
+    const card = document.createElement('div');
+    card.className = 'q-card' + (answers[i] !== undefined ? ' answered' : '');
+    card.innerHTML =
+      '<div class="q-num">Question ' + q.n + '</div>' +
+      '<div class="q-text"></div>' +
+      '<div class="options"></div>';
+    card.querySelector('.q-text').textContent = q.q;
+    const opts = card.querySelector('.options');
+    q.options.forEach((opt, oi) => {
+      const label = document.createElement('label');
+      if (answers[i] === oi) label.classList.add('selected');
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'q' + i;
+      input.checked = answers[i] === oi;
+      input.addEventListener('change', () => {
+        answers[i] = oi;
+        card.classList.add('answered');
+        card.querySelectorAll('label').forEach(l => l.classList.remove('selected'));
+        label.classList.add('selected');
+        updateProgress();
+        saveProgress();
+      });
+      const span = document.createElement('span');
+      renderOptionText(span, circled[oi], opt, (q.underlined && q.underlined[oi]) || '');
+      label.appendChild(input);
+      label.appendChild(span);
+      opts.appendChild(label);
+    });
+    list.appendChild(card);
+  }
+  $('pageInfo').textContent = 'Page ' + (page + 1) + ' of ' + Math.ceil(TOTAL / PER_PAGE) + '  (Q' + QUESTIONS[start].n + '–Q' + QUESTIONS[end - 1].n + ')';
+  $('prevBtn').disabled = page === 0;
+  $('nextBtn').disabled = end >= TOTAL;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitQuiz() {
+  const unanswered = TOTAL - Object.keys(answers).length;
+  if (unanswered > 0 && !confirm(unanswered + ' question(s) still unanswered — they will count as wrong. Submit anyway?')) return;
+  submitted = true;
+  let score = 0;
+  QUESTIONS.forEach((q, i) => { if (answers[i] === q.answer) score++; });
+  const pct = Math.round(score / TOTAL * 100);
+  $('scoreBig').textContent = score + ' / ' + TOTAL;
+  $('scorePct').textContent = pct + '% correct';
+  $('scoreMsg').textContent =
+    pct >= 90 ? 'Excellent! EPS-TOPIK ready. 🎉' :
+    pct >= 70 ? 'Very good! Keep polishing the weak ones.' :
+    pct >= 50 ? 'Good start — review the wrong ones below and try again.' :
+    'Keep practicing — the explanations below will help.';
+  $('quizView').classList.add('hidden');
+  $('submitBar').classList.add('hidden');
+  $('resultView').classList.remove('hidden');
+  renderReview();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderReview() {
+  const list = $('reviewList');
+  list.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    const mine = answers[i];
+    const ok = mine === q.answer;
+    if (reviewFilter === 'wrong' && ok) return;
+    if (reviewFilter === 'correct' && !ok) return;
+    const card = document.createElement('div');
+    card.className = 'review-card ' + (ok ? 'correct' : 'wrong');
+    card.innerHTML =
+      '<div class="verdict ' + (ok ? 'ok' : 'no') + '">' + (ok ? '✓ Correct' : '✗ Wrong') + ' — Question ' + q.n + '</div>' +
+      '<div class="q-text"></div>' +
+      '<div class="rev-opts"></div>' +
+      '<div class="explain"><b>किन?</b> <span></span></div>';
+    card.querySelector('.q-text').textContent = q.q;
+    const optsBox = card.querySelector('.rev-opts');
+    if (mine === undefined) {
+      const note = document.createElement('div');
+      note.className = 'rev-no-answer';
+      note.textContent = 'उत्तर दिएनौ';
+      optsBox.appendChild(note);
+    }
+    q.options.forEach((opt, oi) => {
+      const row = document.createElement('div');
+      row.className = 'rev-opt';
+      if (oi === q.answer) row.classList.add('rev-opt-correct');
+      if (mine !== undefined && oi === mine && mine !== q.answer) row.classList.add('rev-opt-mine-wrong');
+      const text = document.createElement('span');
+      text.className = 'rev-text';
+      renderOptionText(text, circled[oi], opt, (q.underlined && q.underlined[oi]) || '');
+      row.appendChild(text);
+      if (oi === q.answer) {
+        const b = document.createElement('span');
+        b.className = 'badge badge-correct';
+        b.textContent = '✓ सही उत्तर';
+        row.appendChild(b);
+      }
+      if (mine !== undefined && oi === mine) {
+        const b = document.createElement('span');
+        b.className = 'badge ' + (mine === q.answer ? 'badge-mine' : 'badge-mine-wrong');
+        b.textContent = '→ तिम्रो उत्तर';
+        row.appendChild(b);
+      }
+      optsBox.appendChild(row);
+    });
+    card.querySelector('.explain span').textContent = q.explain;
+    list.appendChild(card);
+  });
+  if (!list.children.length) {
+    list.innerHTML = '<p style="color:var(--muted); text-align:center; padding:20px;">No questions in this filter.</p>';
+  }
+}
+
+$('prevBtn').addEventListener('click', () => { if (page > 0) { page--; renderPage(); saveProgress(); } });
+$('nextBtn').addEventListener('click', () => { if ((page + 1) * PER_PAGE < TOTAL) { page++; renderPage(); saveProgress(); } });
+$('submitBtn').addEventListener('click', submitQuiz);
+$('clearBtn').addEventListener('click', () => {
+  if (!confirm('Sabai answers clear garne? Saved progress pani delete hunchha.')) return;
+  Object.keys(answers).forEach(k => delete answers[k]);
+  clearProgress();
+  page = 0;
+  renderPage(); updateProgress();
+  window.scrollTo({ top: 0 });
+});
+$('retryBtn').addEventListener('click', () => {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  clearProgress();
+  submitted = false; page = 0; reviewFilter = 'all';
+  document.querySelectorAll('.filters button').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+  $('resultView').classList.add('hidden');
+  $('quizView').classList.remove('hidden');
+  $('submitBar').classList.remove('hidden');
+  renderPage(); updateProgress();
+  window.scrollTo({ top: 0 });
+});
+$('reviewTopBtn').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+document.querySelectorAll('.filters button').forEach(b => {
+  b.addEventListener('click', () => {
+    reviewFilter = b.dataset.filter;
+    document.querySelectorAll('.filters button').forEach(x => x.classList.toggle('active', x === b));
+    renderReview();
+  });
+});
+
+renderPage();
+updateProgress();
+</script>
+</body>
+</html>

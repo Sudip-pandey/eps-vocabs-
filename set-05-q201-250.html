@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPS-TOPIK Vocabulary Quiz — Set 05 (Q201–Q250)</title>
+<style>
+  :root {
+    --primary: #1a73e8;
+    --primary-dark: #1557b0;
+    --green: #188038;
+    --green-bg: #e6f4ea;
+    --red: #d93025;
+    --red-bg: #fce8e6;
+    --bg: #f0f4f9;
+    --card: #ffffff;
+    --text: #1f1f1f;
+    --muted: #5f6368;
+    --border: #dadce0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Noto Sans", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; background: #fff; color: var(--primary); font-weight: 700; font-size: .95rem; padding: 10px 20px; border-radius: 999px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,.18); margin-bottom: 12px; transition: transform .15s, box-shadow .15s; }
+  .back-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.22); }
+  header { background: var(--primary); color: #fff; padding: 20px 16px 16px; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+  .header-inner { max-width: 760px; margin: 0 auto; }
+  header h1 { font-size: 1.35rem; line-height: 1.3; }
+  header p { opacity: .9; font-size: .9rem; margin-top: 2px; }
+  .progress-wrap { margin-top: 12px; background: rgba(255,255,255,.25); border-radius: 999px; height: 8px; overflow: hidden; }
+  .progress-bar { height: 100%; background: #fff; width: 0%; transition: width .3s; }
+  .progress-text { font-size: .82rem; margin-top: 6px; opacity: .95; }
+  .autosave-note { font-size: .78rem; margin-top: 4px; opacity: .85; }
+  main { max-width: 760px; margin: 0 auto; padding: 20px 16px 80px; }
+  .q-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .q-card.answered { border-left: 4px solid var(--primary); }
+  .q-num { font-size: .8rem; font-weight: 700; color: var(--primary); letter-spacing: .02em; }
+  .q-text { font-size: 1.08rem; white-space: pre-line; margin: 8px 0 14px; line-height: 1.8; }
+  .options label { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: background .15s, border-color .15s; font-size: 1.02rem; }
+  .options label:hover { background: #f8f9fa; border-color: var(--primary); }
+  .options input { margin-top: 5px; accent-color: var(--primary); width: 18px; height: 18px; flex: none; }
+  .options label.selected { background: #e8f0fe; border-color: var(--primary); }
+  .ul { text-decoration: underline; text-underline-offset: 2px; }
+  .pager { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0 20px; flex-wrap: wrap; }
+  .pager .page-info { font-weight: 600; color: var(--muted); }
+  button { font: inherit; cursor: pointer; border: none; border-radius: 8px; padding: 11px 22px; font-weight: 600; }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-primary:disabled { background: #a8c7fa; cursor: not-allowed; }
+  .btn-ghost { background: #fff; color: var(--primary); border: 1px solid var(--border); }
+  .submit-bar { position: sticky; bottom: 0; background: var(--card); border-top: 1px solid var(--border); padding: 14px 16px; display: flex; justify-content: center; box-shadow: 0 -2px 8px rgba(0,0,0,.08); }
+  .submit-bar .inner { max-width: 760px; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .submit-bar .hint { color: var(--muted); font-size: .9rem; }
+  /* Results */
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 20px; text-align: center; margin-bottom: 20px; }
+  .score-card .big { font-size: 2.6rem; font-weight: 800; color: var(--primary); line-height: 1.1; }
+  .score-card .pct { font-size: 1.1rem; color: var(--muted); margin-top: 4px; }
+  .score-card .msg { margin-top: 10px; font-size: 1rem; }
+  .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filters button { padding: 8px 16px; }
+  .filters button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .review-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 14px; }
+  .review-card.correct { border-left: 5px solid var(--green); }
+  .review-card.wrong { border-left: 5px solid var(--red); }
+  .verdict { font-weight: 700; font-size: .95rem; margin-bottom: 6px; }
+  .verdict.ok { color: var(--green); }
+  .verdict.no { color: var(--red); }
+  .review-card .ans-line { margin: 4px 0; }
+  .review-card .ans-line b { font-weight: 700; }
+  .review-card .ans-line .mine-wrong { color: var(--red); }
+  .review-card .ans-line .right { color: var(--green); }
+  .rev-opts { margin: 10px 0 4px; }
+  .rev-opt { display: flex; align-items: flex-start; gap: 8px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px; font-size: .98rem; line-height: 1.6; }
+  .rev-opt-correct { background: var(--green-bg); border-color: var(--green); }
+  .rev-opt-mine-wrong { background: var(--red-bg); border-color: var(--red); }
+  .rev-opt .rev-text { flex: 1; }
+  .rev-opt .badge { flex: none; font-size: .78rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
+  .badge-correct { background: var(--green); color: #fff; }
+  .badge-mine { background: var(--green); color: #fff; }
+  .badge-mine-wrong { background: var(--red); color: #fff; }
+  .rev-no-answer { color: var(--muted); font-size: .9rem; margin: 4px 0 8px; }
+  .explain { background: #f8f9fa; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: .96rem; }
+  .explain b { color: var(--primary-dark); }
+  .hidden { display: none; }
+  footer { text-align: center; color: var(--muted); font-size: .82rem; padding: 20px; }
+  @media (max-width: 520px) {
+    header h1 { font-size: 1.15rem; }
+    .q-text { font-size: 1rem; }
+    .submit-bar .hint { display: none; }
+  }
+  @media (max-width: 600px) {
+    header { padding: 10px 12px; }
+    .back-btn { padding: 6px 14px; font-size: .85rem; margin-bottom: 8px; }
+    header h1 { font-size: 1.05rem; line-height: 1.25; }
+    header p { font-size: .78rem; line-height: 1.35; }
+    .progress-wrap { margin-top: 8px; height: 6px; }
+    .progress-text { font-size: .75rem; margin-top: 4px; }
+    .autosave-note { font-size: .7rem; margin-top: 2px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="back-btn">&larr; Back to All Sets</a>
+    <h1>EPS-TOPIK 문제은행 Quiz</h1>
+    <p>Set 5 of 11 &bull; Questions 201–250 &bull; 50 questions &bull; EPS-TOPIK Vocabulary &mdash; answers are AI-generated (no answer key in the book) &mdash; check with a teacher &bull; Explanations in Nepali</p>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-text" id="progressText">0 / 50 answered</div>
+    <div class="autosave-note">Progress will be auto-saved.</div>
+  </div>
+</header>
+
+<main id="quizView">
+  <div id="questionList"></div>
+  <div class="pager">
+    <button class="btn-ghost" id="prevBtn">&larr; Previous</button>
+    <span class="page-info" id="pageInfo"></span>
+    <button class="btn-ghost" id="nextBtn">Next &rarr;</button>
+  </div>
+</main>
+
+<div class="submit-bar" id="submitBar">
+  <div class="inner">
+    <span class="hint" id="submitHint">Answer all 50, then submit.</span>
+    <div style="display:flex; gap:8px; flex:none;">
+      <button class="btn-ghost" id="clearBtn" style="padding:11px 16px;">Clear all</button>
+      <button class="btn-primary" id="submitBtn">Submit Quiz</button>
+    </div>
+  </div>
+</div>
+
+<main id="resultView" class="hidden">
+  <div class="score-card">
+    <div class="big" id="scoreBig"></div>
+    <div class="pct" id="scorePct"></div>
+    <div class="msg" id="scoreMsg"></div>
+    <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <button class="btn-primary" id="retryBtn">Try Again</button>
+      <button class="btn-ghost" id="reviewTopBtn">Back to top</button>
+    </div>
+  </div>
+  <div class="filters">
+    <button class="btn-ghost active" data-filter="all">All questions</button>
+    <button class="btn-ghost" data-filter="wrong">Wrong only</button>
+    <button class="btn-ghost" data-filter="correct">Correct only</button>
+  </div>
+  <div id="reviewList"></div>
+</main>
+
+<script>
+const QUESTIONS = [{"n": "201", "q": "지역 사회의 건강을 관리하고 증진하기 위해 공공 보건 서비스를 제공하는 기관입니다. 예방접종, 건강 상담, 검진 등 다양한 건강 관리 서비스를 제공합니다.", "options": ["보건소", "상담소", "아동의원", "정형외과"], "answer": 0, "explain": "१. 보건소 भनेको समुदायको स्वास्थ्य व्यवस्थापन र प्रवर्द्धनका लागि सार्वजनिक स्वास्थ्य सेवा प्रदान गर्ने संस्था हो, त्यसैले यो सही उत्तर हो। २. 상담소 भनेको परामर्श केन्द्र हो, यो सार्वजनिक स्वास्थ्य सेवा दिने संस्था होइन त्यसैले मिल्दैन। ३. 아동의원 भनेको बाल अस्पताल हो, यो सबैका लागि सार्वजनिक स्वास्थ्य सेवा दिने संस्था होइन त्यसैले मिल्दैन। ४. 정형외과 भनेको हाडजोर्नी अस्पताल हो, यो विशेष अस्पताल हो त्यसैले मिल्दैन। सही उत्तर 1 नम्बरको 보건소 हो।"}, {"n": "202", "q": "내적인 질병, 즉 내부 장기와 관련된 질환을 진단하고 치료하는 의학 분야입니다. 주로 소화기, 심장, 호흡기 등 다양한 문제를 다룹니다.", "options": ["치과", "내과", "안과", "소아과"], "answer": 1, "explain": "१. 치과 भनेको दाँतको अस्पताल हो, यो आन्तरिक अंगहरूको रोगको उपचार गर्ने विभाग होइन त्यसैले मिल्दैन। २. 내과 भनेको आन्तरिक रोगहरू जस्तै पेट, मुटु, फोक्सो आदिको जाँच र उपचार गर्ने चिकित्सा क्षेत्र हो, त्यसैले यो सही उत्तर हो। ३. 안과 भनेको आँखाको अस्पताल हो, यो आन्तरिक अंगको विभाग होइन त्यसैले मिल्दैन। ४. 소아과 भनेको बालरोग अस्पताल हो, यो आन्तरिक रोग विभाग होइन त्यसैले मिल्दैन। सही उत्तर 2 नम्बरको 내과 हो।"}, {"n": "203", "q": "이를 치료하거나 교정하는 의원이나 병원입니다.", "options": ["안과", "치과", "내과", "피부과"], "answer": 1, "explain": "१. 안과 भनेको आँखाको अस्पताल हो, यो दाँतको उपचार गर्ने ठाउँ होइन त्यसैले मिल्दैन। २. 치과 भनेको दाँतको उपचार वा मिलाउने (क्यो्रेक्ट गर्ने) अस्पताल वा क्लिनिक हो, त्यसैले यो सही उत्तर हो। ३. 내과 भनेको आन्तरिक रोगको अस्पताल हो, यो दाँतको अस्पताल होइन त्यसैले मिल्दैन। ४. 피부과 भनेको छालाको अस्पताल हो, यो दाँतको अस्पताल होइन त्यसैले मिल्दैन। सही उत्तर 2 नम्बरको 치과 हो।"}, {"n": "204", "q": "뼈, 관절, 근육이 아프거나 다쳤을 때 치료하는 병원입니다. 골절이나 관절염, 허리 아픔 등을 고치는 곳입니다.", "options": ["피부과", "산부인과", "성형외과", "정형외과"], "answer": 3, "explain": "१. 피부과 भनेको छालाको अस्पताल हो, यो हाडजोर्नीको उपचार गर्ने ठाउँ होइन त्यसैले मिल्दैन। २. 산부인과 भनेको प्रसूति तथा स्त्रीरोग अस्पताल हो, यो हाडजोर्नीको होइन त्यसैले मिल्दैन। ३. 성형외과 भनेको प्लास्टिक सर्जरी अस्पताल हो, यो हाडजोर्नी दुख्ने ठाउँ होइन त्यसैले मिल्दैन। ४. 정형외과 भनेको हाड, जोर्नी र मांशपेसी दुख्दा वा चोट लाग्दा उपचार गर्ने अस्पताल हो, त्यसैले यो सही उत्तर हो। सही उत्तर 4 नम्बरको 정형외과 हो।"}, {"n": "205", "q": "전통적인 한국 의학적인 방식을 이용해 치료하는 곳입니다. 주로 약초나 침, 뜸 등을 사용하여 몸의 균형을 맞추고 건강을 돌봅니다.", "options": ["의원", "안과", "치과", "한의원"], "answer": 3, "explain": "१. 의원 भनेको सामान्य क्लिनिक हो, यो परम्परागत कोरियाली चिकित्सा पद्धति मात्र होइन त्यसैले मिल्दैन। २. 안과 भनेको आँखाको अस्पताल हो, यो परम्परागत चिकित्सा होइन त्यसैले मिल्दैन। ३. 치과 भनेको दाँतको अस्पताल हो, यो परम्परागत चिकित्सा होइन त्यसैले मिल्दैन। ४. 한의원 भनेको परम्परागत कोरियाली चिकित्सा पद्धति प्रयोग गरेर उपचार गर्ने ठाउँ हो, त्यसैले यो सही उत्तर हो। सही उत्तर 4 नम्बरको 한의원 हो।"}, {"n": "206", "q": "얼굴이나 몸의 모양을 고치거나 바꾸는 치료를 하는 병원입니다. 다친 곳을 복원하거나 더 예쁘게 만들기 위해 수술하기도 합니다.", "options": ["내과", "피부과", "소아과", "성형외과"], "answer": 3, "explain": "१. 내과 भनेको आन्तरिक रोगको अस्पताल हो, यो शरीरको आकार बदल्ने ठाउँ होइन त्यसैले मिल्दैन। २. 피부과 भनेको छालाको अस्पताल हो, यो प्लास्टिक सर्जरी गर्ने ठाउँ होइन त्यसैले मिल्दैन। ३. 소아과 भनेको बालरोग अस्पताल हो, यो सर्जरी गर्ने ठाउँ होइन त्यसैले मिल्दैन। ४. 성형외과 भनेको अनुहार वा शरीरको आकार सच्याउने वा परिवर्तन गर्ने उपचार गर्ने अस्पताल हो, त्यसैले यो सही उत्तर हो। सही उत्तर 4 नम्बरको 성형외과 हो।"}, {"n": "207", "q": "귀, 코, 목이 아플 때 치료해 주는 병원으로 감기, 코막힘, 중이염 같은 병을 봅니다.", "options": ["청소년과", "정형외과", "이비인후과", "산부인과"], "answer": 2, "explain": "१. 청소년과 भनेको किशोरकिशोरी विभाग हो, यो कान, नाक, घाँटी हेर्ने अस्पताल होइन त्यसैले मिल्दैन। २. 정형외과 भनेको हाडजोर्नी अस्पताल हो, यो कान, नाक, घाँटी हेर्ने ठाउँ होइन त्यसैले मिल्दैन। ३. 이비인후과 भनेको कान, नाक र घाँटी दुख्दा रुघाखोकी, नाक बन्द हुने रोगको उपचार गर्ने अस्पताल हो, त्यसैले यो सही उत्तर हो। ४. 산부인과 भनेको प्रसूति तथा स्त्रीरोग अस्पताल हो, यो कान, नाक, घाँटीको अस्पताल होइन त्यसैले मिल्दैन। सही उत्तर 3 नम्बरको 이비인후과 हो।"}, {"n": "208", "q": "약을 사는 곳으로, 의사가 준 처방전을 가지고 가면 약을 받아 먹을 수 있습니다. 감기약이나 연고 같은 일반 약도 살 수 있습니다.", "options": ["진료소", "병원", "약국", "극장"], "answer": 2, "explain": "१. 진료소 भनेको स्वास्थ्य चौकी हो, यो औषधि किन्ने ठाउँ होइन त्यसैले मिल्दैन। २. 병원 भनेको अस्पताल हो, यो औषधि मात्र किन्न जाने ठाउँ होइन त्यसैले मिल्दैन। ३. 약국 भनेको औषधि किन्ने ठाउँ हो, जहाँ डाक्टरले दिएको पुर्जी देखाएर औषधि लिन सकिन्छ र साधारण औषधि पनि किन्न पाइन्छ, त्यसैले यो सही उत्तर हो। ४. 극장 भनेको सिनेमा हल हो, यो औषधिसँग सम्बन्धित छैन त्यसैले मिल्दैन। सही उत्तर 3 नम्बरको 약국 हो।"}, {"n": "209", "q": "가정에서 응급 조치나 병의 예방약으로 준비해 놓는 약품이며 처방전 없이 약국이나 편의점에서 쉽게 살 수 있습니다.", "options": ["비상약", "항생제", "멀미약", "아목시실린"], "answer": 0, "explain": "१. 비상약 भनेको आपत्कालीन औषधि हो, जुन घरमा आकस्मिक उपचार वा रोग रोकथामका लागि तयार गरि राखिन्छ र पुर्जी बिना नै फार्मेसी वा कन्भेनिएन्स स्टोरबाट सजिलै किन्न सकिन्छ, त्यसैले यो सही उत्तर हो। २. 항생제 भनेको एन्टिबायोटिक हो, यो पुर्जी बिना किन्न पाइँदैन त्यसैले मिल्दैन। ३. 멀미약 भनेको गाडी वा डुङ्गा लाग्दा खाने औषधि हो, यो आपत्कालीन औषधिको सामान्य वर्ग होइन त्यसैले मिल्दैन। ४. 아목시실린 भनेको एमोक्सिसिलिन (एन्टिबायोटिक) हो, यो पुर्जी बिना पाइँदैन त्यसैले मिल्दैन। सही उत्तर 1 नम्बरको 비상약 हो।"}, {"n": "210", "q": "몸이 아프거나 삔 곳에 붙이는 약입니다. 통증을 줄이고 붓기를 가라앉히는 데 도움을 줍니다.", "options": ["파스", "안약", "연고", "밴드"], "answer": 0, "explain": "१. 파스 भनेको शरीर दुखेको वा नसा तानिएको ठाउँमा टाँस्ने औषधि (पार्ष) हो, यसले दुखाइ कम गर्न र सुन्निएको घटाउन मद्दत गर्छ, त्यसैले यो सही उत्तर हो। २. 안약 भनेको आँखामा हाल्ने थोपा औषधि हो, यो शरीर दुखेको ठाउँमा टाँस्ने होइन त्यसैले मिल्दैन। ३. 연고 भनेको मलम हो, यो टाँस्ने पाटे औषधि होइन त्यसैले मिल्दैन। ४. 밴드 भनेको ब्यान्डेज वा प्लास्टर हो, यसले दुखाइ कम गर्ने औषधि भएको टाँस्ने साधन होइन त्यसैले मिल्दैन। सही उत्तर 1 नम्बरको 파스 हो।"}, {"n": "211", "q": "사람이나 동물의 병이나 상처에 생기는 해로운 세균을 죽이거나 예방하기 위하여 바르는 물질입니다.", "options": ["진통제", "소독약", "반창고", "소화제"], "answer": 1, "explain": "1. '진통제' भनेको दुखाइ कम गर्ने औषधि हो, तर यसले कीटाणु मार्दैन। 2. '소독약' भनेको कीटाणुनाशक औषधि हो, जसले घाउ वा चोटपटकमा हुने हानिकारक कीटाणुलाई मार्न र रोक्न मद्दत गर्छ, त्यसैले यो सही उत्तर हो। 3. '반창고' भनेको घाउमा टाँस्ने पट्टी हो, यो मलम वा औषधि होइन। 4. '소화제' भनेको खाना पचाउने औषधि हो, घाउमा लगाउने औषधि होइन। तसर्थ सही उत्तर २ नम्बरको '소독약' (कीटाणुनाशक औषधि) हो।"}, {"n": "212", "q": "상처나 부스럼 따위에 감는 소독한 헝겊입니다. 신축성 있고 바람이 잘 통하는 면포, 거즈 따위로 만듭니다.", "options": ["반창고", "붕대", "영양제", "파스"], "answer": 1, "explain": "१. 반창고 भनेको ब्यान्डएज वा प्लास्टर हो, त्यसैले यो मिल्दैन। २. 붕대 भनेको घाउमा बेर्ने ब्यान्डेज वा पट्टि हो, त्यसैले यो सही उत्तर हो। ३. 영양제 भनेको भिटामिन तथा पौष्टिक तत्व हो, त्यसैले यो मिल्दैन। ४. 파스 भनेको दुखाइ कम गर्ने टाँस्ने प्याच हो, त्यसैले यो मिल्दैन। सही उत्तर 붕대 हो।"}, {"n": "213", "q": "몸이나 상처가 아플 때 치료의 효과는 없고 통증을 느끼지 못하게 하는 약입니다.", "options": ["해열제", "영양제", "소화제", "진통제"], "answer": 3, "explain": "१. 해열제 भनेको ज्वरो, घटाउने औषधि हो, त्यसैले यो मिल्दैन। २. 영양제 भनेको पौष्टिक औषधि हो, त्यसैले यो मिल्दैन। ३. 소화제 भनेको पाचनसम्बन्धी औषधि हो, त्यसैले यो मिल्दैन। ४. 진통제 भनेको दुखाइ कम गर्ने औषधि हो, त्यसैले यो सही उत्तर हो। सही उत्तर 진통제 हो।"}, {"n": "214", "q": "우리 몸에 필요한 비타민이나 영양소를 보충해 주는 건강 보조 식품입니다. 피로할 때나 영양이 부족할 때 먹습니다.", "options": ["항생제", "영양제", "지사제", "진통제"], "answer": 1, "explain": "१. 항생제 भनेको एन्टिबायोटिक हो, त्यसैले यो मिल्दैन। २. 영양제 भनेको शरीरलाई चाहिने भिटामिन र पौष्टिक तत्व दिने स्वास्थ्य पूरक खाद्यपदार्थ हो, त्यसैले यो सही उत्तर हो। ३. 지사제 भनेको पखाला रोक्ने औषधि हो, त्यसैले यो मिल्दैन। ४. 진통제 भनेको दुखाइ कम गर्ने औषधि हो, त्यसैले यो मिल्दैन। सही उत्तर 영양제 हो।"}, {"n": "215", "q": "약을 전문적으로 알고, 약을 조제하거나 올바르게 먹는 방법을 알려주는 사람입니다. 주로 약국에서 일합니다.", "options": ["의사", "약사", "간호사", "보호자"], "answer": 1, "explain": "१. 의사 भनेको डाक्टर हो, त्यसैले यो मिल्दैन। २. 약사 भनेको औषधि पसलमा बसेर औषधि बनाउने र खाने तरिका सिकाउने फार्मासिस्ट (फार्मासिस्ट/औषधि व्यवसायी) हो, त्यसैले यो सही उत्तर हो। ३. 간호사 भनेको नर्स हो, त्यसैले यो मिल्दैन। ४. 보호자 भनेको बिरामीको रेखदेख गर्ने संरक्षक हो, त्यसैले यो मिल्दैन। सही उत्तर 약사 हो।"}, {"n": "216", "q": "우체국으로 보내는 모든 종류의 물건이나 편지를 말합니다. 예를 들어, 편지, 소포, 카드 등이 우편물에 포함됩니다.", "options": ["준비물", "수하물", "우편물", "방해물"], "answer": 2, "explain": "१. 준비물 भनेको तयारी गर्ने सामग्री हो, त्यसैले यो मिल्दैन। २. 수하물 भनेको लगेज वा सामान हो, त्यसैले यो मिल्दैन। ३. 우편물 भनेको चिठीपत्र वा हुलाकबाट पठाउने वस्तु हो, त्यसैले यो सही उत्तर हो। ४. 방해물 भनेको बाधा पुर्‍याउने वस्तु हो, त्यसैले यो मिल्दैन। सही उत्तर 우편물 हो।"}, {"n": "217", "q": "물건을 집이나 회사로 배달해 주는 서비스입니다. 주문한 상품이나 소포를 빠르게 집으로 받아 볼 수 있습니다.", "options": ["이체", "EMS", "택배", "환불"], "answer": 2, "explain": "१. 이체 भनेको बैंक खाताबाट पैसा स्थानान्तरण गर्नु हो, त्यसैले यो मिल्दैन। २. EMS भनेको अन्तर्राष्ट्रिय द्रुत हुलाक सेवा हो, त्यसैले यो मिल्दैन। ३. 택배 भनेको घर वा कम्पनीमा सामान पुर्‍याइदिने कुरियर सेवा हो, त्यसैले यो सही उत्तर हो। ४. 환불 भनेको पैसा फिर्ता गर्नु हो, त्यसैले यो मिल्दैन। सही उत्तर 택배 हो।"}, {"n": "218", "q": "오늘 보낸 우편물을 다음 날 바로 받아볼 수 있는 빠른 우편 서비스입니다. 급하게 보내야 할 때 사용합니다.", "options": ["일반 소포", "항공 우편", "익일 특급", "선박 우편"], "answer": 2, "explain": "१. 일반 소포 भनेको सामान्य पार्सल हो, त्यसैले यो मिल्दैन। २. 항공 우편 भनेको हवाइ हुलाक हो, त्यसैले यो मिल्दैन। ३. 익일 특급 भनेको भोलिपल्टै प्राप्त हुने गरी पठाइने द्रुत हुलाक सेवा हो, त्यसैले यो सही उत्तर हो। ४. 선박 우편 भनेको पानीजहाजबाट पठाइने हुलाक हो, त्यसैले यो मिल्दैन। सही उत्तर 익일 특급 हो।"}, {"n": "219", "q": "국제적으로 긴급한 문서나 물품을 신속하게 배송하는 우편 서비스입니다. 빠른 배송과 함께 배송 추적 기능도 제공됩니다.", "options": ["국제 특급", "익일 우편", "국내 소포", "일반 우편"], "answer": 0, "explain": "1. '국제 특급' (이에엠에스) भनेको अन्तर्राष्ट्रिय द्रुत हुलाक सेवा हो, जसले कागजात वा सामान छिटो पठाउँछ र ट्र्याकिङ पनि दिन्छ, त्यसैले यो सही उत्तर हो। 2. '익일 우편' भनेको भोलिपल्ट पुग्ने हुलाक सेवा हो, यो अन्तर्राष्ट्रिय सेवा होइन। 3. '국내 소포' भनेको देशभित्र पठाउने पार्सल सेवा हो, अन्तर्राष्ट्रिय सेवा होइन। 4. '일반 우편' भनेको साधारण हुलाक सेवा हो, जुन छिटो हुँदैन। तसर्थ सही उत्तर १ नम्बरको '국제 특급' (अन्तर्राष्ट्रिय द्रुत सेवा) हो।"}, {"n": "220", "q": "비행기를 이용해 사람이나 화물을 한 장소에서 다른 장소로 운송하는 서비스입니다. 빠른 이동이 가능해 국내외 여행과 물류에 널리 사용됩니다.", "options": ["항공편", "교통편", "선편", "왕복"], "answer": 0, "explain": "१. 항공편 भनेको हवाइमार्ग वा उडान सेवा हो, त्यसैले यो सही उत्तर हो। २. 교통편 भनेको यातायातको साधन वा माध्यम हो, त्यसैले यो मिल्दैन। ३. 선편 भनेको जलमार्ग वा पानीजहाज सेवा हो, त्यसैले यो मिल्दैन। ४. 왕복 भनेको जानु र आउनु (दोहोरो यात्रा) हो, त्यसैले यो मिल्दैन। सही उत्तर 항공편 हो।"}, {"n": "221", "q": "전기, 수도, 가스, 전화 등 공공기관이나 공기업에 정기적으로 내는 요금입니다. 생활에 필요한 기본 서비스 이용에 대한 대가입니다.", "options": ["임금", "벌금", "보험금", "공과금"], "answer": 3, "explain": "१. 임금 भनेको ज्याला वा तलब हो, त्यसैले यो मिल्दैन। २. 벌금 भनेको जरिवाना हो, त्यसैले यो मिल्दैन। ३. 보험금 भनेको दाबी भुक्तानी रकम वा बिमा रकम हो, त्यसैले यो मिल्दैन। ४. 공과금 भनेको बिजुली, पानी, ग्यास जस्ता सार्वजनिक शुल्कहरू हुन्, त्यसैले यो सही उत्तर हो। सही उत्तर 공과금 हो।"}, {"n": "222", "q": "은행에서 개인이나 기업이 금융 거래를 할 수 있도록 만든 책자나 카드입니다. 입금, 출금, 송금 등의 기록이 기록되어 있으며, 계좌와 연결되어 사용됩니다.", "options": ["도장", "서명", "창구", "통장"], "answer": 3, "explain": "१. 도장 भनेको सहीछाप वा ल्याछाप लगाउने छाप हो, त्यसैले यो मिल्दैन। २. 서명 भनेको हस्ताक्षर हो, त्यसैले यो मिल्दैन। ३. 창구 भनेको बैंकको काउन्टर हो, त्यसैले यो मिल्दैन। ४. 통장 भनेको बैंक पासबुक हो, त्यसैले यो सही उत्तर हो। सही उत्तर 통장 हो।"}, {"n": "223", "q": "통장의 입출금 내역과 잔액 따위를 확인하기 위하여, 창구나 자동화 기기를 통해 기록을 정리하는 일입니다.", "options": ["잔액 조회", "계좌 이체", "통장 정리", "인터넷뱅킹"], "answer": 2, "explain": "१. 잔액 조회 भनेको मौज्दात रकम हेर्नु हो, त्यसैले यो मिल्दैन। २. 계좌 이체 भनेको खाताबाट पैसा स्थानान्तरण गर्नु हो, त्यसैले यो मिल्दैन। ३. 통장 정리 भनेको पासबुक अपडेट वा स्टेटमेन्ट प्रिन्ट गर्नु हो, त्यसैले यो सही उत्तर हो। ४. 인터넷뱅킹 भनेको अनलाइन बैंकिङ हो, त्यसैले यो मिल्दैन। सही उत्तर 통장 정리 हो।"}, {"n": "224", "q": "개인이나 단체의 신분을 증명하거나 공식 문서에 사용하기 위해 이름 등을 새긴 도구입니다. 서명 대신 사용되며, 계약서나 신청서 등에 찍어 법적 효력을 가집니다.", "options": ["창구", "카드", "도장", "서명"], "answer": 2, "explain": "१. 창구 भनेको काउन्टर हो, त्यसैले यो मिल्दैन। २. 카드 भनेको कार्ड हो, त्यसैले यो मिल्दैन। ३. 도장 भनेको कागजातमा आधिकारिकताका लागि प्रयोग गरिने सहीछाप (सील/स्टाम्प) हो, त्यसैले यो सही उत्तर हो। ४. 서명 भनेको हस्ताक्षर हो, त्यसैले यो मिल्दैन। सही उत्तर 도장 हो।"}, {"n": "225", "q": "순서를 정하기 위해 사용하는 표로, 번호를 부여해 차례대로 처리할 수 있게 도와줍니다. 병원, 은행, 관공서 등에서 대기 순서를 관리할 때 주로 사용됩니다.", "options": ["번호표", "신청서", "예금주", "영수증"], "answer": 0, "explain": "१. 번호표 भनेको पालो लिनका लागि दिइने नम्बर पर्ची (टोकन) हो, त्यसैले यो सही उत्तर हो। २. 신청서 भनेको निवेदन फारम हो, त्यसैले यो मिल्दैन। ३. 예금주 भनेको खातावाला हो, त्यसैले यो मिल्दैन। ४. 영수증 भनेको बिल वा रसिद हो, त्यसैले यो मिल्दैन। सही उत्तर 번호표 हो।"}, {"n": "226", "q": "개인의 신원을 증명하기 위해 발급되는 공식 문서입니다. 주민등록증, 운전면허증, 여권 등이 이에 해당하며, 본인 확인이 필요한 상황에서 사용됩니다.", "options": ["신청서", "신분증", "이력서", "보험증"], "answer": 1, "explain": "1. 신청서 भनेको आवेदन फारम हो, जुन यस विवरणसँग मिल्दैन। 2. 신분증 भनेको परिचय पत्र हो, जुन व्यक्तिको पहिचान प्रमाणित गर्न जारी गरिने आधिकारिक कागजात हो र यसले विवरणसँग ठ्याक्कै मेल खान्छ। 3. 이력서 भनेको बायोडाटा वा व्यक्तिगत विवरण हो, जुन यस विवरणसँग मिल्दैन। 4. 보험증 भनेको बीमा कार्ड हो, जुन यस विवरणसँग मिल्दैन। सही उत्तर 2 (신분증, परिचय पत्र) हो।"}, {"n": "227", "q": "은행 계좌에서 현금을 인출하거나 잔액 조회, 송금 등의 업무를 할 수 있는 자동화된 기계입니다. 카드나 비밀번호를 이용해 24시간 이용할 수 있어 편리합니다.", "options": ["자동 판매기", "현금 인출기", "계좌 이체", "통"], "answer": 1, "explain": "1. 자동 판매기 भनेको भेंडिङ मेसिन (स्वचालित बिक्री गर्ने मेशिन) हो, जुन यस विवरणसँग मिल्दैन। 2. 현금 인출기 भनेको नगद झिक्ने मेशिन (एटिएम) हो, जसले बैंक खाताबाट नगद झिक्ने, ब्यालेन्स जाँच गर्ने जस्ता काम गर्छ र विवरणसँग ठ्याक्कै मेल खान्छ। 3. 계좌 이체 भनेको खाता स्थानान्तरण हो, जुन यस विवरणसँग मिल्दैन। 4. 통 भनेको भाँडो वा पिँडौं हो, जुन यस विवरणसँग मिल्दैन। सही उत्तर 1 (현금 인출기, नगद झिक्ने मेशिन) हो।"}, {"n": "228", "q": "한 나라의 돈을 다른 나라의 돈으로 바꾸는 과정입니다. 주로 해외 여행이나 국제 거래 시 필요하며, 은행이나 환전소에서 할 수 있습니다.", "options": ["환전", "입금", "출금", "송금"], "answer": 0, "explain": "1. 환전 भनेको मुद्रा सटही (पैसा साट्ने काम) हो, जसले एक देशको पैसा अर्को देशको पैसामा साट्ने प्रक्रिया बुझाउँछ र विवरणसँग ठ्याक्कै मेल खान्छ। 2. 입금 भनेको जम्मा गर्ने काम हो, जुन यस विवरणसँग मिल्दैन। 3. 출금 भनेको पैसा झिक्ने काम हो, जुन यस विवरणसँग मिल्दैन। 4. 송금 भनेको रेमिट्यान्स वा पैसा पठाउने काम हो, जुन यस विवरणसँग मिल्दैन। सही उत्तर 0 (환전, मुद्रा सटही) हो।"}, {"n": "229", "q": "외국인 근로자들이 한국에서 일하며 겪는 어려움을 상담하고 지원하는 기관입니다. 체류, 생활, 법률 문제 등에 대한 정보와 모국어로 도움을 제공합니다.", "options": ["고용노동부", "외국인력상담센터", "다문화센터", "근로복지센터"], "answer": 1, "explain": "1. 고용노동부 भनेको श्रम तथा रोजगार मन्त्रालय हो, जुन यस विवरणसँग मिल्दैन। 2. 외국인력상담센터 भनेको विदेशी कामदार परामर्श केन्द्र हो, जसले वैदेशिक कामदारहरूको समस्या समाधान र सहयोग गर्छ र विवरणसँग ठ्याक्कै मेल खान्छ। 3. 다문화센터 भनेको बहुसांस्कृतिक केन्द्र हो, जुन यस विवरणसँग मिल्दैन। 4. 근로복지센터 भनेको श्रमिक कल्याण केन्द्र हो, जुन यस विवरणसँग मिल्दैन। सही उत्तर 1 (외국인력상담센터, विदेशी कामदार परामर्श केन्द्र) हो।"}, {"n": "230", "q": "어떤 사실이나 주장이 사실임을 입증할 수 있는 자료나 정보입니다. 예를 들어, 사건이 일어난 시간, 장소, 사람 등을 증명할 수 있는 물건 등이 이에 해당합니다.", "options": ["가해자", "피해자", "증인", "증거"], "answer": 3, "explain": "1. '가해자' भनेको अरूलाई हानि पुऱ्याउने मानिस हो, त्यसैले यो होइन। 2. '피해자' भनेको हानि वा चोट भोगेको पीडित मानिस हो, त्यसैले यो होइन। 3. '증인' भनेको घटना देख्ने साक्षी मानिस हो, त्यसैले यो होइन। 4. '증거' भनेको कुनै तथ्य वा घटना सत्य हो भनेर प्रमाणित गर्ने प्रमाण वा सामग्री हो, त्यसैले यो सही उत्तर हो। तसर्थ सही उत्तर ४ नम्बरको '증거' (प्रमाण) हो। यो प्रश्नका विकल्पहरू किताबमा छापिएका छैनन्, शिक्षकले दिनुभएको हो।"}, {"n": "231", "q": "공장이나 사무실 같은 물리적인 공간으로, 사람들이 일정한 작업이나 업무를 수행하는 장소를 말합니다.", "options": ["작업대", "작업장", "작업 관리", "작업 순서"], "answer": 1, "explain": "1. 작업대 भनेको काम गर्ने टेबल हो, जुन यस विवरणसँग मिल्दैन। 2. 작업장 भनेको कार्यस्थल वा काम गर्ने ठाउँ हो, जसले मानिसहरूले निश्चित काम गर्ने भौतिक ठाउँलाई बुझाउँछ र विवरणसँग ठ्याक्कै मेल खान्छ। 3. 작업 관리 भनेको कामको व्यवस्थापन हो, जुन यस विवरणसँग मिल्दैन। 4. 작업 순서 भनेको कामको क्रम हो, जुन यस विवरणसँग मिल्दैन। सही उत्तर 1 (작업장, कार्यस्थल) हो।"}, {"n": "232", "q": "작업을 할 때 나무나 금속 조각과 같은 물건을 단단히 고정시켜 도구를 사용할 수 있는 테이블입니다.", "options": ["작업대", "서랍장", "손수레", "옷장"], "answer": 0, "explain": "1. 작업대 भनेको काम गर्ने टेबल (वर्कबेञ्च) हो, जसले काठ वा धातुका टुक्राहरूलाई कच्याककुचुक नगरी कडासँग अड्याएर औजार प्रयोग गर्न मिल्ने टेबल बुझाउँछ र विवरणसँग ठ्याक्कै मेल खान्छ। 2. 서랍장 भनेको दराज हो, जुन यस विवरणसँग मिल्दैन। 3. 손수레 भनेको हाते ठेला हो, जुन यस विवरणसँग मिल्दैन। 4. 옷장 भनेको कपडा राख्ने दराज हो, जुन यस विवरणसँग मिल्दैन। सही उत्तर 0 (작업대, काम गर्ने टेबल) हो।"}, {"n": "233", "q": "물건이나 자재 등을 보관하기 위한 공간 또는 건물을 말하며 상품, 식료품, 기계 부품 등을 보관합니다.", "options": ["창고", "복도", "기숙사", "관리소"], "answer": 0, "explain": "1. '창고' भनेको सामान, खाद्यान्न वा पार्टपुर्जा भण्डार गर्ने गोदाम हो, त्यसैले यो विवरणसँग मिल्छ र सही उत्तर हो। 2. '복도' भनेको हिँड्ने बाटो वा बरण्डा हो, सामान राख्ने ठाउँ होइन। 3. '기숙사' भनेको कामदारहरू बस्ने होस्टेल हो, सामान भण्डार गर्ने ठाउँ होइन। 4. '관리소' भनेको भवन वा क्षेत्रको हेरचाह गर्ने कार्यालय हो, सामान राख्ने गोदाम होइन। तसर्थ सही उत्तर १ नम्बरको '창고' (गोदाम) हो।"}, {"n": "234", "q": "어떤 일이나 업무를 맡아 책임지고 수행하는 사람을 말합니다. 고객 상담을 맡은 직원이나 창고 관리 책임자 등 이에 해당합니다.", "options": ["공장장", "담당자", "과장", "반장"], "answer": 1, "explain": "1. 공장장 भनेको कारखाना प्रमुख हो, जुन यस विवरणसँग मिल्दैन। 2. 담당자 भनेको जिम्मेवार व्यक्ति वा सम्पर्क व्यक्ति हो, जसले कुनै कामको जिम्मेवारी लिएर त्यसलाई पूरा गर्ने व्यक्तिलाई बुझाउँछ र विवरणसँग ठ्याक्कै मेल खान्छ। 3. 과장 भनेको विभाग प्रमुख (कावा) हो, जुन यस विवरणसँग मिल्दैन। 4. 반장 भनेको बान्जाङ (समूह नेता) हो, जुन यस विवरणसँग मिल्दैन। सही उत्तर 1 (담당자, जिम्मेवार व्यक्ति) हो।"}, {"n": "235", "q": "물체나 공간이 얼마나 따뜻하거나 차가운지를 나타내는 물리적인 양입니다. 섭씨(°C)나 화씨(°F) 단위로 측정하며, 열의 세기와 관련이 있습니다.", "options": ["날씨", "계절", "온도", "환경"], "answer": 2, "explain": "1. 날씨 भनेको मौसम हो, जुन यस विवरणसँग मिल्दैन। 2. 계절 भनेको ऋतु हो, जुन यस विवरणसँग मिल्दैन। 3. 온도 भनेको तापक्रम हो, जसले बस्तु वा ठाउँ कति तातो वा चिसो छ भन्ने भौतिक मात्रालाई बुझाउँछ र विवरणसँग ठ्याक्कै मेल खान्छ। 4. 환경 भनेको वातावरण हो, जुन यस विवरणसँग मिल्दैन। सही उत्तर 2 (온도, तापक्रम) हो।"}, {"n": "236", "q": "한 나라나 지역의 경제에서 각 산업(농업, 제조업, 서비스업 등)이 차지하는 비중과 이들 사이의 상호 관계를 나타내는 개념입니다.", "options": ["산업 개발", "산업 경제", "산업 관리", "산업 구조"], "answer": 3, "explain": "1. 산업 개발 भनेको उद्योग विकास हो, जुन यस विवरणसँग मिल्दैन। 2. 산업 경제 भनेको औद्योगिक अर्थतन्त्र हो, जुन यस विवरणसँग मिल्दैन। 3. 산업 관리 भनेको उद्योग व्यवस्थापन हो, जुन यस विवरणसँग मिल्दैन। 4. 산업 구조 भनेको औद्योगिक संरचना हो, जसले देशको अर्थतन्त्रमा विभिन्न उद्योगहरूको हिस्सा र सम्बन्धलाई बुझाउँछ र विवरणसँग ठ्याक्कै मेल खान्छ। सही उत्तर 3 (산업 구조, औद्योगिक संरचना) हो। किताबमा दोस्रो विकल्प '산업 계제' छापिएको छ; यो छपाइ त्रुटि हो, सही शब्द '산업 경제' हो।"}, {"n": "237", "q": "전 세계가 정치, 경제, 사회, 문화 등 여러 측면에서 서로 밀접하게 연결되고 영향을 주고받는 현상을 말합니다.", "options": ["글로벌화", "산업화", "도시화", "온난화"], "answer": 0, "explain": "1. 글로벌화 भनेको विश्वव्यापीकरण (ग्लोबललाइजेसन) हो, जसले संसारभरका देशहरू राजनीति, अर्थतन्त्र र संस्कृतिमा जोडिने प्रक्रियालाई बुझाउँछ र विवरणसँग ठ्याक्कै मेल खान्छ। 2. 산업화 भनेको औद्योगिकीकरण हो, जुन यस विवरणसँग मिल्दैन। 3. 도시화 भनेको सहरीकरण हो, जुन यस विवरणसँग मिल्दैन। 4. 온난화 भनेको तापक्रम वृद्धि (ग्लोबल वार्मिङ) हो, जुन यस विवरणसँग मिल्दैन। सही उत्तर 0 (글로벌화, विश्वव्यापीकरण) हो।"}, {"n": "238", "q": "제품을 보호하기 위해 충격이나 진동을 흡수하고 분산시키는 역할을 하는 포장 재료입니다.", "options": ["라벨", "밀봉", "완충재", "테이프"], "answer": 2, "explain": "1. '라벨' भनेको सामानको विवरण लेखिएको लेबल हो, धक्का सोस्ने सामग्री होइन। 2. '밀봉' भनेको बाकस वा पोका हावा नछिर्ने गरी बन्द गर्ने काम हो, सामग्री होइन। 3. '완충재' भनेको सामान फुट्न वा बिग्रन नदिन धक्का र कम्पन सोस्ने प्याकिङ सामग्री हो, त्यसैले यो सही उत्तर हो। 4. '테이프' भनेको बाकस टाँस्न प्रयोग गरिने टेप हो, धक्का सोस्ने सामग्री होइन। तसर्थ सही उत्तर ३ नम्बरको '완충재' (धक्का सोस्ने सामग्री) हो।"}, {"n": "239", "q": "금속 제품이 녹슬지 않도록 포장 처리가 된 종이로, 금속을 포장할 때 사용하는 특수 포장재입니다.", "options": ["완충재", "방청지", "절단기", "용접봉"], "answer": 1, "explain": "1. 완충재 भनेको बफर सामग्री हो, जुन यस विवरणसँग मिल्दैन। 2. 방청지 भनेको खिया प्रतिरोधी कागज हो, जसले धातुका उत्पादनहरूमा खिया लाग्न नदिन प्रयोग गरिने विशेष प्याकेजिङ कागजलाई बुझाउँछ र विवरणसँग ठ्याक्कै मेल खान्छ। 3. 절단기 भनेको काट्ने मेशिन हो, जुन यस विवरणसँग मिल्दैन। 4. 용접봉 भनेको वेल्डिङ रड हो, जुन यस विवरणसँग मिल्दैन। सही उत्तर 1 (방청지, खिया प्रतिरोधी कागज) हो।"}, {"n": "240", "q": "물품을 쌓아 올리고 지게차나 핸드리프트로 쉽게 운반할 수 있도록 만든 바닥용 받침대입니다. 물류 창고나 공장에서 상품을 운반할 때 사용되며, 나무, 플라스틱, 금속 등의 재질이 있습니다.", "options": ["대차", "일륜차", "트렉터", "파렛트"], "answer": 3, "explain": "1. 대차 भनेको ट्रली हो, जुन यस विवरणसँग मिल्दैन। 2. 일륜차 भनेको एक चक्के ठेला (व्हीलबारो) हो, जुन यस विवरणसँग मिल्दैन। 3. 트렉터 भनेको ट्र्याक्टर हो, जुन यस विवरणसँग मिल्दैन। 4. 파렛트 भनेको प्यालेट (सामान राख्ने काठ वा प्लास्टिकको प्लेटर) हो, जसले सामानहरू थुपार्न र फोर्कलिफ्टले सजिलै ओसार्न मद्दत गर्ने भुईँको आधारलाई बुझाउँछ र विवरणसँग ठ्याक्कै मेल खान्छ। सही उत्तर 3 (파렛트, प्यालेट) हो।"}, {"n": "241", "q": "앞부분에 포크형의 두 개 철판이 나와 있어 이것을 상하로 움직여 짐을 운반하거나 하역합니다.", "options": ["크레인", "콤바인", "화물차", "지게차"], "answer": 3, "explain": "1. 크레인 भनेको ठूला र भारी सामानहरू माथि उचालेर टाढा लैजाने क्रेन हो, त्यसैले यो मिल्दैन। 2. 콤바인 भनेको धान वा गहुँ काट्ने र थ्रेसिंग गर्ने कृषि मेसिन हो, त्यसैले यो मिल्दैन। 3. 화물차 भनेको सामान बोक्ने ट्रक हो, त्यसैले यो मिल्दैन। 4. 지게차 भनेको अगाडि फोर्क जस्तो फलामको प्लेट भएको र त्यसलाई माथि तल सार्दै सामान बोक्ने वा अनलोड गर्ने फोर्कलिफ्ट हो, त्यसैले यो सही उत्तर हो। सही उत्तर 지게차 हो जसको अर्थ फोर्कलिफ्ट हो।"}, {"n": "242", "q": "파렛트에 적재된 물품을 사람이 직접 밀거나 당겨서 운반할 수 있도록 만든 수동 운반 장비입니다. 지게차 없이 좁은 공간에서 물건을 옮길 때 주로 사용됩니다.", "options": ["핸드 파렛트", "핸드 카트", "일륜차", "손수레"], "answer": 0, "explain": "1. 핸드 파렛트 भनेको प्यालेटमा राखिएका सामानहरू मानिसले आफैँ ठेलेर वा तानेर लैजान सक्ने गरी बनाएको ह्यान्ड प्यालेट ट्रक हो, त्यसैले यो सही उत्तर हो। 2. 핸드 카트 भनेको सामान्य हातले गुडाउने कार्ट हो, त्यसैले यो मिल्दैन। 3. 일륜차 भनेको एक पाङ्ग्रे ठेलागाडी हो, त्यसैले यो मिल्दैन। 4. 손수레 भनेको हातले गुडाउने ठेलागाडी हो, त्यसैले यो मिल्दैन। सही उत्तर 핸드 파렛트 हो जसको अर्थ ह्यान्ड प्यालेट हो।"}, {"n": "243", "q": "물건을 싣고 이동시키기 위한 바퀴 달린 운반 장비로, 주로 공장, 창고, 물류 현장에서 사용됩니다. 무거운 짐을 실어 나를 때 사용하는 평평한 판 위에 바퀴가 달린 운반 수레입니다.", "options": ["대차", "트렉터", "파렛트", "지게차"], "answer": 0, "explain": "1. 대차 भनेको सामान बोकेर लैजान पाङ्ग्रा भएको समथल प्लेट वा ट्रली हो, त्यसैले यो सही उत्तर हो। 2. 트렉터 भनेको ट्र्याक्टर हो, त्यसैले यो मिल्दैन। 3. 파렛트 भनेको सामान राख्ने प्यालेट हो, त्यसैले यो मिल्दैन। 4. 지게차 भनेको फोर्कलिफ्ट हो, त्यसैले यो मिल्दैन। सही उत्तर 대차 हो जसको अर्थ ट्रली वा प्ल्याटफर्म ट्रक हो।"}, {"n": "244", "q": "다른 나라로부터 상품이나 기술 따위를 국내로 사들이는 절차를 말합니다.", "options": ["수출", "무역", "수입", "소득"], "answer": 2, "explain": "1. 수출 भनेको विदेशमा सामान पठाउनु वा निर्यात गर्नु हो, त्यसैले यो मिल्दैन। 2. 무역 भनेको दुई देशबीच सामान किनबेच गर्नु वा व्यापार गर्नु हो, त्यसैले यो मिल्दैन। 3. 수입 भनेको विदेशबाट सामान वा प्रविधि देश भित्र भित्र्याउनु वा आयात गर्नु हो, त्यसैले यो सही उत्तर हो। 4. 소득 भनेको आम्दानी हो, त्यसैले यो मिल्दैन। सही उत्तर 수입 हो जसको अर्थ आयात हो।"}, {"n": "245", "q": "자연에서 인간의 노력 없이 얻을 수 있는 자원으로, 산업과 생활에 활용되는 물, 공기, 석유, 석탄, 산림, 광물 같은 자원입니다.", "options": ["수자원", "문화유산", "천연자원", "산림 재산"], "answer": 2, "explain": "1. 수자원 भनेको पानीका स्रोतहरू हुन्, त्यसैले यो मिल्दैन। 2. 문화유산 भनेको सांस्कृतिक सम्पदा हो, त्यसैले यो मिल्दैन। 3. 천연자원 भनेको प्रकृतिबाट मानिसको प्रयास बिना प्राप्त हुने पानी, हावा, खनिज जस्ता प्राकृतिक स्रोतहरू हुन्, त्यसैले यो सही उत्तर हो। 4. 산림 재산 भनेको वनसम्बन्धी सम्पत्ति हो, त्यसैले यो मिल्दैन। सही उत्तर 천연자원 हो जसको अर्थ प्राकृतिक स्रोत हो।"}, {"n": "246", "q": "국가 간에 상품이나 서비스를 사고파는 경제 활동을 말합니다. 예를 들어 한국이 외국에 자동차를 수출하고, 밀이나 석유를 수입하는 것입니다.", "options": ["소득", "무역", "임금", "재산"], "answer": 1, "explain": "1. 소득 भनेको आम्दानी हो, त्यसैले यो मिल्दैन। 2. 무역 भनेको देशहरूबीच सामान वा सेवाहरूको किनबेच गर्ने आर्थिक गतिविधि वा व्यापार हो, त्यसैले यो सही उत्तर हो। 3. 임금 भनेको ज्याला वा तलब हो, त्यसैले यो मिल्दैन। 4. 재산 भनेको सम्पत्ति हो, त्यसैले यो मिल्दैन। सही उत्तर 무역 हो जसको अर्थ व्यापार हो।"}, {"n": "247", "q": "한 나라가 자국의 상품이나 서비스를 다른 나라에 보내어 판매하는 경제 활동입니다.", "options": ["비용", "수입", "수출", "세금"], "answer": 2, "explain": "1. 비용 भनेको खर्च हो, त्यसैले यो मिल्दैन। 2. 수입 भनेको आयात हो, त्यसैले यो मिल्दैन। 3. 수출 भनेको आफ्नो देशको सामान वा सेवा अर्को देशमा पठाएर बिक्री गर्ने आर्थिक गतिविधि वा निर्यात हो, त्यसैले यो सही उत्तर हो। 4. 세금 भनेको कर हो, त्यसैले यो मिल्दैन। सही उत्तर 수출 हो जसको अर्थ निर्यात हो।"}, {"n": "248", "q": "지하에서 뽑아낸 정제되지 않은 천연 상태의 기름으로, 석유 제품의 원료가 됩니다. 휘발유, 경유, 플라스틱 등을 만드는 데 사용됩니다.", "options": ["원유", "재료", "장비", "전기"], "answer": 0, "explain": "1. 원유 भनेको जमिनमुनिबाट निकालिएको प्रशोधन नगरिएको प्राकृतिक तेल वा कच्चा तेल हो, त्यसैले यो सही उत्तर हो। 2. 재료 भनेको सामग्री हो, त्यसैले यो मिल्दैन। 3. 장비 भनेको उपकरण हो, त्यसैले यो मिल्दैन। 4. 전기 भनेको बिजुली हो, त्यसैले यो मिल्दैन। सही उत्तर 원유 हो जसको अर्थ कच्चा तेल हो।"}, {"n": "249", "q": "기계, 장비, 차량 등에서 부품이나 장치를 설치하거나 부착하는 과정을 의미합니다. 이 과정은 부품이 원활히 작동하도록 연결하거나 고정하는 중요한 작업입니다.", "options": ["작동", "관리", "재고", "장착"], "answer": 3, "explain": "1. 작동 भनेको मेसिन चल्नु वा सञ्चालन हुनु हो, त्यसैले यो मिल्दैन। 2. 관리 भनेको व्यवस्थापन वा रेखदेख गर्नु हो, त्यसैले यो मिल्दैन। 3. 재고 भनेको बाँकी सामान वा स्टक हो, त्यसैले यो मिल्दैन। 4. 장착 भनेको मेसिन वा सवारी साधनमा पार्टपुर्जा वा यन्त्र जडान गर्नु वा फिट गर्नु हो, त्यसैले यो सही उत्तर हो। सही उत्तर 장착 हो जसको अर्थ जडान गर्नु वा फिट गर्नु हो।"}, {"n": "250", "q": "어떤 기계나 구조물을 분해하거나 분리하는 과정을 말합니다. 이는 부품을 하나씩 나누거나, 원래의 형태에서 분해하는 작업을 포함합니다.", "options": ["용접", "절단", "해체", "회전"], "answer": 2, "explain": "1. '용접' भनेको वेल्डिङ गर्ने काम हो, त्यसैले यो मेसिन वा संरचना फुकाल्नेसँग मिल्दैन। 2. '절단' भनेको सामान काट्ने काम हो, त्यसैले यो विवरणसँग मेल खाँदैन। 3. '해체' भनेको खोलकल गर्ने वा विघटन गर्ने काम हो, जसले विवरणमा भनिए झैँ मेसिन वा संरचनाका भागहरू छुट्याउने कामलाई बुझाउँछ। 4. '회전' भनेको घुम्ने वा घुमाउने कार्य हो, त्यसैले यो खोलकल गर्नेसँग मिल्दैन। त्यसैले सही उत्तर 3 नम्बरको '해체' (विघटन वा खोलकल) हो।"}];
+
+const PER_PAGE = 20;
+const TOTAL = QUESTIONS.length;
+const SET_ID = 'eps-vocab-set-05';
+const answers = {}; // question index -> chosen option index
+let page = 0;
+let submitted = false;
+let reviewFilter = 'all';
+
+// --- progress auto-save (localStorage) ---
+// Saved per set (key includes SET_ID), so each set file keeps its own
+// progress. Wrapped in try/catch: if the browser blocks storage, the quiz
+// still works, it just won't remember progress.
+const STORE_KEY = 'eps-quiz-' + SET_ID;
+function storeAvailable() {
+  try { localStorage.setItem('__eps_test__', '1'); localStorage.removeItem('__eps_test__'); return true; }
+  catch (e) { return false; }
+}
+const storeOK = storeAvailable();
+function saveProgress() {
+  if (!storeOK) return;
+  try { localStorage.setItem(STORE_KEY, JSON.stringify({ answers: answers, page: page })); } catch (e) {}
+}
+function loadProgress() {
+  if (!storeOK) return;
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data && data.answers) {
+      Object.keys(data.answers).forEach(k => { answers[k] = data.answers[k]; });
+      if (typeof data.page === 'number' && data.page >= 0 && data.page < Math.ceil(TOTAL / PER_PAGE)) page = data.page;
+    }
+  } catch (e) {}
+}
+function clearProgress() {
+  if (storeOK) { try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
+}
+loadProgress();
+
+const $ = (id) => document.getElementById(id);
+const circled = ['①','②','③','④'];
+
+function updateProgress() {
+  const done = Object.keys(answers).length;
+  $('progressBar').style.width = (done / TOTAL * 100) + '%';
+  $('progressText').textContent = done + ' / ' + TOTAL + ' answered';
+  $('submitHint').textContent = done === TOTAL ? 'All answered — ready to submit!' : (TOTAL - done) + ' unanswered (counted wrong on submit).';
+}
+
+// Renders "① <option text>" into `el`, wrapping the FIRST occurrence of
+// the underlined substring (if any) in <span class="ul"> so it gets a real
+// CSS underline — never a combining mark (U+0332 renders as tofu boxes on
+// some devices). Uses text nodes only, never innerHTML, so option text is
+// never parsed as markup. Questions without an "underlined" field (e.g.
+// the 600-question quiz) render plain text exactly as before.
+function renderOptionText(el, prefix, opt, under) {
+  el.appendChild(document.createTextNode(prefix + ' '));
+  const u = under || '';
+  const idx = u ? opt.indexOf(u) : -1;
+  if (idx < 0) {
+    el.appendChild(document.createTextNode(opt));
+    return;
+  }
+  if (idx > 0) el.appendChild(document.createTextNode(opt.slice(0, idx)));
+  const span = document.createElement('span');
+  span.className = 'ul';
+  span.appendChild(document.createTextNode(u));
+  el.appendChild(span);
+  if (idx + u.length < opt.length) {
+    el.appendChild(document.createTextNode(opt.slice(idx + u.length)));
+  }
+}
+
+function renderPage() {
+  const list = $('questionList');
+  list.innerHTML = '';
+  const start = page * PER_PAGE;
+  const end = Math.min(start + PER_PAGE, TOTAL);
+  for (let i = start; i < end; i++) {
+    const q = QUESTIONS[i];
+    const card = document.createElement('div');
+    card.className = 'q-card' + (answers[i] !== undefined ? ' answered' : '');
+    card.innerHTML =
+      '<div class="q-num">Question ' + q.n + '</div>' +
+      '<div class="q-text"></div>' +
+      '<div class="options"></div>';
+    card.querySelector('.q-text').textContent = q.q;
+    const opts = card.querySelector('.options');
+    q.options.forEach((opt, oi) => {
+      const label = document.createElement('label');
+      if (answers[i] === oi) label.classList.add('selected');
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'q' + i;
+      input.checked = answers[i] === oi;
+      input.addEventListener('change', () => {
+        answers[i] = oi;
+        card.classList.add('answered');
+        card.querySelectorAll('label').forEach(l => l.classList.remove('selected'));
+        label.classList.add('selected');
+        updateProgress();
+        saveProgress();
+      });
+      const span = document.createElement('span');
+      renderOptionText(span, circled[oi], opt, (q.underlined && q.underlined[oi]) || '');
+      label.appendChild(input);
+      label.appendChild(span);
+      opts.appendChild(label);
+    });
+    list.appendChild(card);
+  }
+  $('pageInfo').textContent = 'Page ' + (page + 1) + ' of ' + Math.ceil(TOTAL / PER_PAGE) + '  (Q' + QUESTIONS[start].n + '–Q' + QUESTIONS[end - 1].n + ')';
+  $('prevBtn').disabled = page === 0;
+  $('nextBtn').disabled = end >= TOTAL;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitQuiz() {
+  const unanswered = TOTAL - Object.keys(answers).length;
+  if (unanswered > 0 && !confirm(unanswered + ' question(s) still unanswered — they will count as wrong. Submit anyway?')) return;
+  submitted = true;
+  let score = 0;
+  QUESTIONS.forEach((q, i) => { if (answers[i] === q.answer) score++; });
+  const pct = Math.round(score / TOTAL * 100);
+  $('scoreBig').textContent = score + ' / ' + TOTAL;
+  $('scorePct').textContent = pct + '% correct';
+  $('scoreMsg').textContent =
+    pct >= 90 ? 'Excellent! EPS-TOPIK ready. 🎉' :
+    pct >= 70 ? 'Very good! Keep polishing the weak ones.' :
+    pct >= 50 ? 'Good start — review the wrong ones below and try again.' :
+    'Keep practicing — the explanations below will help.';
+  $('quizView').classList.add('hidden');
+  $('submitBar').classList.add('hidden');
+  $('resultView').classList.remove('hidden');
+  renderReview();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderReview() {
+  const list = $('reviewList');
+  list.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    const mine = answers[i];
+    const ok = mine === q.answer;
+    if (reviewFilter === 'wrong' && ok) return;
+    if (reviewFilter === 'correct' && !ok) return;
+    const card = document.createElement('div');
+    card.className = 'review-card ' + (ok ? 'correct' : 'wrong');
+    card.innerHTML =
+      '<div class="verdict ' + (ok ? 'ok' : 'no') + '">' + (ok ? '✓ Correct' : '✗ Wrong') + ' — Question ' + q.n + '</div>' +
+      '<div class="q-text"></div>' +
+      '<div class="rev-opts"></div>' +
+      '<div class="explain"><b>किन?</b> <span></span></div>';
+    card.querySelector('.q-text').textContent = q.q;
+    const optsBox = card.querySelector('.rev-opts');
+    if (mine === undefined) {
+      const note = document.createElement('div');
+      note.className = 'rev-no-answer';
+      note.textContent = 'उत्तर दिएनौ';
+      optsBox.appendChild(note);
+    }
+    q.options.forEach((opt, oi) => {
+      const row = document.createElement('div');
+      row.className = 'rev-opt';
+      if (oi === q.answer) row.classList.add('rev-opt-correct');
+      if (mine !== undefined && oi === mine && mine !== q.answer) row.classList.add('rev-opt-mine-wrong');
+      const text = document.createElement('span');
+      text.className = 'rev-text';
+      renderOptionText(text, circled[oi], opt, (q.underlined && q.underlined[oi]) || '');
+      row.appendChild(text);
+      if (oi === q.answer) {
+        const b = document.createElement('span');
+        b.className = 'badge badge-correct';
+        b.textContent = '✓ सही उत्तर';
+        row.appendChild(b);
+      }
+      if (mine !== undefined && oi === mine) {
+        const b = document.createElement('span');
+        b.className = 'badge ' + (mine === q.answer ? 'badge-mine' : 'badge-mine-wrong');
+        b.textContent = '→ तिम्रो उत्तर';
+        row.appendChild(b);
+      }
+      optsBox.appendChild(row);
+    });
+    card.querySelector('.explain span').textContent = q.explain;
+    list.appendChild(card);
+  });
+  if (!list.children.length) {
+    list.innerHTML = '<p style="color:var(--muted); text-align:center; padding:20px;">No questions in this filter.</p>';
+  }
+}
+
+$('prevBtn').addEventListener('click', () => { if (page > 0) { page--; renderPage(); saveProgress(); } });
+$('nextBtn').addEventListener('click', () => { if ((page + 1) * PER_PAGE < TOTAL) { page++; renderPage(); saveProgress(); } });
+$('submitBtn').addEventListener('click', submitQuiz);
+$('clearBtn').addEventListener('click', () => {
+  if (!confirm('Sabai answers clear garne? Saved progress pani delete hunchha.')) return;
+  Object.keys(answers).forEach(k => delete answers[k]);
+  clearProgress();
+  page = 0;
+  renderPage(); updateProgress();
+  window.scrollTo({ top: 0 });
+});
+$('retryBtn').addEventListener('click', () => {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  clearProgress();
+  submitted = false; page = 0; reviewFilter = 'all';
+  document.querySelectorAll('.filters button').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+  $('resultView').classList.add('hidden');
+  $('quizView').classList.remove('hidden');
+  $('submitBar').classList.remove('hidden');
+  renderPage(); updateProgress();
+  window.scrollTo({ top: 0 });
+});
+$('reviewTopBtn').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+document.querySelectorAll('.filters button').forEach(b => {
+  b.addEventListener('click', () => {
+    reviewFilter = b.dataset.filter;
+    document.querySelectorAll('.filters button').forEach(x => x.classList.toggle('active', x === b));
+    renderReview();
+  });
+});
+
+renderPage();
+updateProgress();
+</script>
+</body>
+</html>
