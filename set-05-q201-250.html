@@ -6,23 +6,25 @@
 <title>EPS-TOPIK Vocabulary Quiz — Set 05 (Q201–Q250)</title>
 <style>
   :root {
-    --primary: #1a73e8;
-    --primary-dark: #1557b0;
-    --green: #188038;
-    --green-bg: #e6f4ea;
-    --red: #d93025;
-    --red-bg: #fce8e6;
-    --bg: #f0f4f9;
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --primary-soft: #eef2ff;
+    --green: #15803d;
+    --green-bg: #dcfce7;
+    --red: #b91c1c;
+    --red-bg: #fee2e2;
+    --bg: #f4f5fb;
     --card: #ffffff;
-    --text: #1f1f1f;
-    --muted: #5f6368;
-    --border: #dadce0;
+    --text: #111827;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --shadow: 0 1px 3px rgba(17,24,39,.08), 0 4px 16px rgba(17,24,39,.05);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: "Noto Sans", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
   .back-btn { display: inline-flex; align-items: center; gap: 6px; background: #fff; color: var(--primary); font-weight: 700; font-size: .95rem; padding: 10px 20px; border-radius: 999px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,.18); margin-bottom: 12px; transition: transform .15s, box-shadow .15s; }
   .back-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.22); }
-  header { background: var(--primary); color: #fff; padding: 20px 16px 16px; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+  header { background: linear-gradient(135deg, #312e81 0%, #4f46e5 55%, #7c3aed 100%); color: #fff; padding: 20px 16px 16px; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 12px rgba(49,46,129,.35); }
   .header-inner { max-width: 760px; margin: 0 auto; }
   header h1 { font-size: 1.35rem; line-height: 1.3; }
   header p { opacity: .9; font-size: .9rem; margin-top: 2px; }
@@ -31,19 +33,19 @@
   .progress-text { font-size: .82rem; margin-top: 6px; opacity: .95; }
   .autosave-note { font-size: .78rem; margin-top: 4px; opacity: .85; }
   main { max-width: 760px; margin: 0 auto; padding: 20px 16px 80px; }
-  .q-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .q-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 16px; box-shadow: var(--shadow); }
   .q-card.answered { border-left: 4px solid var(--primary); }
-  .q-num { font-size: .8rem; font-weight: 700; color: var(--primary); letter-spacing: .02em; }
+  .q-num { display: inline-block; font-size: .78rem; font-weight: 700; color: var(--primary-dark); background: var(--primary-soft); padding: 3px 12px; border-radius: 999px; letter-spacing: .02em; }
   .q-text { font-size: 1.08rem; white-space: pre-line; margin: 8px 0 14px; line-height: 1.8; }
-  .options label { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: background .15s, border-color .15s; font-size: 1.02rem; }
-  .options label:hover { background: #f8f9fa; border-color: var(--primary); }
+  .options label { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; cursor: pointer; transition: background .15s, border-color .15s, box-shadow .15s; font-size: 1.02rem; }
+  .options label:hover { background: #f8f9fa; border-color: var(--primary); box-shadow: var(--shadow); }
   .options input { margin-top: 5px; accent-color: var(--primary); width: 18px; height: 18px; flex: none; }
-  .options label.selected { background: #e8f0fe; border-color: var(--primary); }
+  .options label.selected { background: var(--primary-soft); border-color: var(--primary); }
   .ul { text-decoration: underline; text-underline-offset: 2px; }
   .pager { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0 20px; flex-wrap: wrap; }
   .pager .page-info { font-weight: 600; color: var(--muted); }
   button { font: inherit; cursor: pointer; border: none; border-radius: 8px; padding: 11px 22px; font-weight: 600; }
-  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary { background: var(--primary); color: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(79,70,229,.35); }
   .btn-primary:hover { background: var(--primary-dark); }
   .btn-primary:disabled { background: #a8c7fa; cursor: not-allowed; }
   .btn-ghost { background: #fff; color: var(--primary); border: 1px solid var(--border); }
@@ -51,14 +53,14 @@
   .submit-bar .inner { max-width: 760px; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
   .submit-bar .hint { color: var(--muted); font-size: .9rem; }
   /* Results */
-  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 20px; text-align: center; margin-bottom: 20px; }
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; text-align: center; margin-bottom: 20px; box-shadow: var(--shadow); }
   .score-card .big { font-size: 2.6rem; font-weight: 800; color: var(--primary); line-height: 1.1; }
   .score-card .pct { font-size: 1.1rem; color: var(--muted); margin-top: 4px; }
   .score-card .msg { margin-top: 10px; font-size: 1rem; }
   .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
   .filters button { padding: 8px 16px; }
   .filters button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-  .review-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 14px; }
+  .review-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 14px; box-shadow: var(--shadow); }
   .review-card.correct { border-left: 5px solid var(--green); }
   .review-card.wrong { border-left: 5px solid var(--red); }
   .verdict { font-weight: 700; font-size: .95rem; margin-bottom: 6px; }
@@ -78,8 +80,17 @@
   .badge-mine { background: var(--green); color: #fff; }
   .badge-mine-wrong { background: var(--red); color: #fff; }
   .rev-no-answer { color: var(--muted); font-size: .9rem; margin: 4px 0 8px; }
-  .explain { background: #f8f9fa; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: .96rem; }
+  .explain { background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-top: 12px; font-size: .96rem; }
   .explain b { color: var(--primary-dark); }
+  .explain-label { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--primary-dark); margin-bottom: 10px; }
+  .explain-stem { background: var(--primary-soft); border-left: 4px solid var(--primary); border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; line-height: 1.7; }
+  .exp-line { padding: 9px 12px; border-top: 1px solid var(--border); line-height: 1.7; }
+  .exp-line:first-of-type { border-top: none; }
+  .exp-line.exp-ok { background: var(--green-bg); border-radius: 8px; border-top: none; }
+  .exp-mark { font-weight: 800; margin-left: 4px; }
+  .exp-mark.ok { color: var(--green); }
+  .exp-mark.no { color: var(--red); }
+  .exp-note { background: #fffbeb; border: 1px solid #fcd34d; border-left: 4px solid #d97706; border-radius: 8px; padding: 10px 12px; margin-top: 10px; line-height: 1.7; }
   .hidden { display: none; }
   footer { text-align: center; color: var(--muted); font-size: .82rem; padding: 20px; }
   @media (max-width: 520px) {
@@ -288,6 +299,56 @@ function submitQuiz() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Renders the explanation as a structured list: the explanation string is
+// lines separated by "\n" — first line is the question's own meaning
+// ("प्रश्नको अर्थ: ..."), then one line per option ("① <word> ... ✓/✗").
+// Lines render as separate rows; the ✓ line gets a green tint and the ✓/✗
+// marker is coloured. Explanations without line breaks (fallback prose)
+// render as a single paragraph, exactly as before. Uses text nodes only,
+// never innerHTML, so explanation text is never parsed as markup.
+function renderExplain(box, explain) {
+  const lines = (explain || '').split('\n').map(s => s.trim()).filter(Boolean);
+  if (lines.length <= 1) {
+    const b = document.createElement('b');
+    b.textContent = 'किन? ';
+    box.appendChild(b);
+    const s = document.createElement('span');
+    s.textContent = explain;
+    box.appendChild(s);
+    return;
+  }
+  const label = document.createElement('div');
+  label.className = 'explain-label';
+  label.textContent = 'व्याख्या';
+  box.appendChild(label);
+  lines.forEach((ln, li) => {
+    const d = document.createElement('div');
+    if (li === 0 && ln.indexOf('प्रश्नको अर्थ') === 0) {
+      d.className = 'explain-stem';
+      d.textContent = ln;
+      box.appendChild(d);
+      return;
+    }
+    if (ln.indexOf('शिक्षकको उत्तर-पत्र:') === 0) {
+      d.className = 'exp-note';
+      d.textContent = ln;
+      box.appendChild(d);
+      return;
+    }
+    const mark = ln.endsWith('✓') ? '✓' : (ln.endsWith('✗') ? '✗' : '');
+    const body = mark ? ln.slice(0, -1).trim() : ln;
+    d.className = 'exp-line' + (mark === '✓' ? ' exp-ok' : '');
+    d.appendChild(document.createTextNode(body + (mark ? ' ' : '')));
+    if (mark) {
+      const m = document.createElement('span');
+      m.className = 'exp-mark ' + (mark === '✓' ? 'ok' : 'no');
+      m.textContent = mark;
+      d.appendChild(m);
+    }
+    box.appendChild(d);
+  });
+}
+
 function renderReview() {
   const list = $('reviewList');
   list.innerHTML = '';
@@ -302,7 +363,7 @@ function renderReview() {
       '<div class="verdict ' + (ok ? 'ok' : 'no') + '">' + (ok ? '✓ Correct' : '✗ Wrong') + ' — Question ' + q.n + '</div>' +
       '<div class="q-text"></div>' +
       '<div class="rev-opts"></div>' +
-      '<div class="explain"><b>किन?</b> <span></span></div>';
+      '<div class="explain"></div>';
     card.querySelector('.q-text').textContent = q.q;
     const optsBox = card.querySelector('.rev-opts');
     if (mine === undefined) {
@@ -334,7 +395,7 @@ function renderReview() {
       }
       optsBox.appendChild(row);
     });
-    card.querySelector('.explain span').textContent = q.explain;
+    renderExplain(card.querySelector('.explain'), q.explain);
     list.appendChild(card);
   });
   if (!list.children.length) {
